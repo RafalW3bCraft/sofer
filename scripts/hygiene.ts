@@ -1,16 +1,23 @@
 import { execSync } from "node:child_process";
 
+// Match patterns that look like a real key being assigned a non-empty value.
+// `=` followed by anything that is NOT just whitespace, a comment, or a newline
+// means a secret was committed. Empty placeholders in `.env.example` are fine.
 const FORBIDDEN = [
-  /NEBIUS_API_KEY\s*=\s*\S+/,
-  /NEBIUS_BASE_URL\s*=\s*\S+/,
-  /OPENAI_API_KEY\s*=\s*\S+/,
+  /NEBIUS_API_KEY\s*=\s*\S[^#\n]*/,
+  /NEBIUS_BASE_URL\s*=\s*\S[^#\n]*/,
+  /OPENAI_API_KEY\s*=\s*\S[^#\n]*/,
   /\bsk-[A-Za-z0-9]{20,}\b/,
   /\bghp_[A-Za-z0-9]{20,}\b/,
   /\bxox[bp]-[A-Za-z0-9-]{10,}\b/,
   /\b\d{4}-\d{4}-\d{4}-\d{4}\b/,
-  /TOKENFACTORY_API_KEY\s*=\s*\S+/,
-  /RADEON_API_KEY\s*=\s*\S+/,
+  /TOKENFACTORY_API_KEY\s*=\s*\S[^#\n]*/,
+  /RADEON_API_KEY\s*=\s*\S[^#\n]*/,
 ];
+
+// Files exempt from secret scanning. `.env.example` is the canonical template
+// and is allowed to reference variable names without values.
+const EXEMPT = [".env.example", ".env.sample"];
 
 const FORBIDDEN_PATHS = [/OmniLangTutor\//];
 
@@ -37,13 +44,15 @@ for (const file of tracked) {
       stdio: ["pipe", "pipe", "pipe"],
     });
   } catch {
-    // File might be tracked but not yet committed (initial empty index).
     continue;
   }
-  for (const re of FORBIDDEN) {
-    if (re.test(content)) {
-      console.error(`hygiene FAIL: ${file} matches ${re}`);
-      failures += 1;
+  const isExempt = EXEMPT.includes(file);
+  if (!isExempt) {
+    for (const re of FORBIDDEN) {
+      if (re.test(content)) {
+        console.error(`hygiene FAIL: ${file} matches ${re}`);
+        failures += 1;
+      }
     }
   }
 }
