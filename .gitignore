@@ -18,3 +18,21 @@ coverage/
 *.log
 .vscode/
 .idea/
+
+# Harness-managed skill copies and locks (the canonical skills/ is tracked)
+.agents/
+.claude/
+agent/
+skills-lock.json
+
+# Predecessor project kept inside this directory only as a reference; not part
+# of the new submission. Listed in README as conceptual inspiration only.
+OmniLangTutor/
+
+# Build output and runtime caches
+node_modules/
+dist/
+build/
+coverage/
+.cache/
+.tmp/
