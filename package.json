@@ -1,0 +1,38 @@
+{
+  "name": "sofer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "sofer — a calm, accessible web app that teaches Modern Standard Arabic to complete beginners through tappable tokens on real sentences and an optional AI tutor.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n client,server -c green,blue \"npm:dev:client\" \"npm:dev:server\"",
+    "dev:client": "npm --prefix client run dev",
+    "dev:server": "npm --prefix server run dev",
+    "build": "npm --prefix client run build && npm --prefix server run build",
+    "start": "npm --prefix server run start",
+    "check": "npm --prefix client run check && npm --prefix server run check",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "validate:lessons": "tsx scripts/validate-lessons.ts",
+    "validate:alphabet": "tsx scripts/validate-alphabet.ts",
+    "hygiene": "tsx scripts/hygiene.ts"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.2",
+    "@types/express": "^5.0.0",
+    "@vitest/coverage-v8": "^2.1.5",
+    "concurrently": "^9.1.0",
+    "express": "^4.21.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.5"
+  },
+  "dependencies": {
+    "zod": "^3.25.76"
+  }
+}

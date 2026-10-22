@@ -1,0 +1,362 @@
+{
+  "version": 1,
+  "lessons": [
+    {
+      "id": "greetings-1",
+      "topic": "greetings",
+      "title": "Greetings and basic courtesies",
+      "objective": "Greet people in Modern Standard Arabic and respond to common greetings.",
+      "difficulty": "A1",
+      "sentences": [
+        {
+          "id": "g1-s1",
+          "arabic": "ٱلسَّلَامُ عَلَيْكُمْ",
+          "english": "Peace be upon you.",
+          "transliteration": "as-salāmu ʿalaykum",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 10,
+              "arabic": "ٱلسَّلَامُ",
+              "transliteration": "as-salām",
+              "meaning": "the peace / peace (definite noun)",
+              "partOfSpeech": "noun",
+              "grammarNote": "Definite noun with the article اَلْ-. The final u-vowel ( ُ ) is the nominative case marker."
+            },
+            {
+              "start": 11,
+              "end": 21,
+              "arabic": "عَلَيْكُمْ",
+              "transliteration": "ʿalaykum",
+              "meaning": "upon you (plural)",
+              "partOfSpeech": "prep",
+              "grammarNote": "Preposition عَلَىَ ('upon') + the second-person plural pronoun كُمْ. A fixed religious and cultural greeting; the -kum ending makes it formal and addressed to a group."
+            }
+          ],
+          "question": {
+            "prompt": "When would you say ٱلسَّلَامُ عَلَيْكُمْ ?",
+            "options": [
+              "When you meet someone, as a general greeting.",
+              "Only when you are saying goodbye.",
+              "Only in writing, never in speech.",
+              "Only when you are asking someone for help."
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "ٱلسَّلَامُ عَلَيْكُمْ is the standard greeting used when meeting someone. The response is وَعَلَيْكُمُ ٱلسَّلَامُ ('and upon you, peace').",
+            "incorrectExplanations": [
+              "Goodbye in Arabic is مَعَ ٱلسَّلَامَةِ (maʿa as-salāmati), not this greeting.",
+              "This is one of the most common spoken greetings in Arabic; it is not restricted to writing.",
+              "For asking help you would use phrases like سَاعِدْنِي (sāʿidnī, 'help me') or مِن فَضْلِكَ (min faḍlika, 'please')."
+            ]
+          }
+        },
+        {
+          "id": "g1-s2",
+          "arabic": "وَعَلَيْكُمُ ٱلسَّلَامُ",
+          "english": "And upon you, peace.",
+          "transliteration": "wa-ʿalaykumu as-salāmu",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 2,
+              "arabic": "وَ",
+              "transliteration": "wa-",
+              "meaning": "and",
+              "partOfSpeech": "particle",
+              "grammarNote": "Coordinating conjunction. Always written with a fatḥa on the wāw when connecting clauses: وَ."
+            },
+            {
+              "start": 2,
+              "end": 12,
+              "arabic": "عَلَيْكُمُ",
+              "transliteration": "ʿalaykumu",
+              "meaning": "upon you",
+              "partOfSpeech": "prep",
+              "grammarNote": "Preposition عَلَىَ + second-person plural pronoun كُمْ + the nominative case marker ـُ."
+            },
+            {
+              "start": 13,
+              "end": 23,
+              "arabic": "ٱلسَّلَامُ",
+              "transliteration": "as-salāmu",
+              "meaning": "the peace",
+              "partOfSpeech": "noun",
+              "grammarNote": "Definite noun; the final -u marks nominative case in this construction."
+            }
+          ],
+          "question": {
+            "prompt": "What is the function of وَ at the start of this sentence?",
+            "options": [
+              "It means 'and', linking this response to the previous greeting.",
+              "It is part of the word for 'you'.",
+              "It marks the sentence as a question.",
+              "It indicates that the speaker is female."
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "وَ is the coordinating conjunction meaning 'and'. It links the response وَعَلَيْكُمُ ٱلسَّلَامُ back to the original greeting.",
+            "incorrectExplanations": [
+              "The pronoun 'you (plural)' is embedded in عَلَيْكُمُ; the و is a separate conjunction.",
+              "Question marks in Arabic are usually indicated by intonation or a question particle like هَلْ, not by و.",
+              "Gender is not marked on و. Speaker gender is encoded in verbs and some pronouns elsewhere in speech."
+            ]
+          }
+        },
+        {
+          "id": "g1-s3",
+          "arabic": "أَهْلًا وَسَهْلًا",
+          "english": "Welcome.",
+          "transliteration": "ahlan wa-sahlan",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 7,
+              "arabic": "أَهْلًا",
+              "transliteration": "ahlan",
+              "meaning": "family / people / welcome",
+              "partOfSpeech": "noun",
+              "grammarNote": "Noun in the accusative case (tanwīn: ـًا). Means literally 'family' or 'people (of yours)' — a fixed welcoming expression."
+            },
+            {
+              "start": 8,
+              "end": 17,
+              "arabic": "وَسَهْلًا",
+              "transliteration": "wa-sahlan",
+              "meaning": "and [a place of] ease",
+              "partOfSpeech": "noun",
+              "grammarNote": "Conjunction وَ + noun سَهْلًا ('ease', accusative). Together the phrase means 'welcome' — literally 'family and ease'."
+            }
+          ],
+          "question": {
+            "prompt": "How do you answer أَهْلًا وَسَهْلًا when someone welcomes you?",
+            "options": [
+              "أَهْلًا وَسَهْلًا — you say the same phrase back.",
+              "You stay silent and nod.",
+              "You say شُكْرًا (thank you) only.",
+              "You say مَعَ ٱلسَّلَامَةِ (goodbye)."
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "The standard reply is to mirror the greeting: أَهْلًا وَسَهْلًا. You can extend it to أَهْلًا وَسَهْلًا بِكَ ('welcome to you').",
+            "incorrectExplanations": [
+              "Silence is not a customary Arabic response to a welcome.",
+              "Thanking the host is polite, but the standard verbal reply is the same welcoming phrase.",
+              "مَعَ ٱلسَّلَامَةِ is a farewell, used when leaving."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "numbers-1",
+      "topic": "numbers",
+      "title": "Numbers one through four",
+      "objective": "Recognize and pronounce the cardinal numbers 1–4 in Modern Standard Arabic.",
+      "difficulty": "A1",
+      "sentences": [
+        {
+          "id": "n1-s1",
+          "arabic": "عِنْدِي كِتَابٌ وَاحِدٌ",
+          "english": "I have one book.",
+          "transliteration": "ʿindī kitābun wāḥidun",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 7,
+              "arabic": "عِنْدِي",
+              "transliteration": "ʿindī",
+              "meaning": "I have / at me",
+              "partOfSpeech": "prep",
+              "grammarNote": "Preposition عِنْدَ ('at, in the possession of') + the first-person singular possessive suffix ـِي ('my'). An idiomatic way to say 'I have'."
+            },
+            {
+              "start": 8,
+              "end": 15,
+              "arabic": "كِتَابٌ",
+              "transliteration": "kitābun",
+              "meaning": "a book",
+              "partOfSpeech": "noun",
+              "grammarNote": "Noun in the nominative case, indefinite (tanwīn: ـٌ)."
+            },
+            {
+              "start": 16,
+              "end": 23,
+              "arabic": "وَاحِدٌ",
+              "transliteration": "wāḥidun",
+              "meaning": "one (1)",
+              "partOfSpeech": "noun",
+              "grammarNote": "Cardinal number 'one', used for counting singular masculine nouns. Indefinite nominative (tanwīn: ـٌ)."
+            }
+          ],
+          "question": {
+            "prompt": "What number is وَاحِدٌ ?",
+            "options": [
+              "One (1)",
+              "Two (2)",
+              "Three (3)",
+              "Ten (10)"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "وَاحِدٌ (wāḥidun) means 'one'. Two is اِثْنَانِ, three is ثَلَاثَةٌ, ten is عَشَرَةٌ.",
+            "incorrectExplanations": [
+              "Two in Arabic is اِثْنَانِ (ithnāni).",
+              "Three in Arabic is ثَلَاثَةٌ (thalāthatun).",
+              "Ten in Arabic is عَشَرَةٌ (ʿasharatun)."
+            ]
+          }
+        },
+        {
+          "id": "n1-s2",
+          "arabic": "لَدَيَّ كِتَابَانِ",
+          "english": "I have two books.",
+          "transliteration": "ladayya kitābāni",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 7,
+              "arabic": "لَدَيَّ",
+              "transliteration": "ladayya",
+              "meaning": "I have / at me",
+              "partOfSpeech": "prep",
+              "grammarNote": "Adverbial preposition لَدَىَ + first-person singular possessive suffix ـَىَّ ('my'). A more formal way to say 'I have' than عِنْدِي."
+            },
+            {
+              "start": 8,
+              "end": 18,
+              "arabic": "كِتَابَانِ",
+              "transliteration": "kitābāni",
+              "meaning": "two books",
+              "partOfSpeech": "noun",
+              "grammarNote": "Noun كِتَاب ('book') in the dual form: ـَانِ ending marks 'two'. The dual is exclusive to exactly two."
+            }
+          ],
+          "question": {
+            "prompt": "Why does كِتَابَانِ end in ـَانِ ?",
+            "options": [
+              "It marks the dual — 'two books' specifically.",
+              "It marks the plural — 'many books'.",
+              "It is the feminine marker.",
+              "It marks the accusative case only."
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "The suffix ـَانِ is the dual marker in Arabic, used for exactly two of something. كِتَاب + ـَانِ = 'two books'.",
+            "incorrectExplanations": [
+              "Arabic plurals use ـُونَ / ـَاتٌ / اِفْتِعَال patterns, not ـَانِ.",
+              "The ـَانِ ending is for the dual; feminine is usually ـَةٌ or ـَاتٌ.",
+              "Dual nouns in Arabic take nominative case by default and have their own dedicated ending."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "directions-1",
+      "topic": "directions",
+      "title": "Basic directions",
+      "objective": "Recognize basic directional words in Modern Standard Arabic.",
+      "difficulty": "A1",
+      "sentences": [
+        {
+          "id": "d1-s1",
+          "arabic": "ٱلْمَكْتَبَةُ أَمَامَ ٱلْمَسْجِدِ",
+          "english": "The library is in front of the mosque.",
+          "transliteration": "al-maktabatu amāma al-masjidi",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 13,
+              "arabic": "ٱلْمَكْتَبَةُ",
+              "transliteration": "al-maktabatu",
+              "meaning": "the library",
+              "partOfSpeech": "noun",
+              "grammarNote": "Definite noun with the article اَلْ-. The final ـُ is the nominative case marker."
+            },
+            {
+              "start": 14,
+              "end": 21,
+              "arabic": "أَمَامَ",
+              "transliteration": "amāma",
+              "meaning": "in front of",
+              "partOfSpeech": "prep",
+              "grammarNote": "Preposition of place. Takes its object in the genitive case."
+            },
+            {
+              "start": 22,
+              "end": 33,
+              "arabic": "ٱلْمَسْجِدِ",
+              "transliteration": "al-masjidi",
+              "meaning": "the mosque",
+              "partOfSpeech": "noun",
+              "grammarNote": "Definite noun in the genitive case ( ـِ ), governed by the preposition أَمَامَ."
+            }
+          ],
+          "question": {
+            "prompt": "What does أَمَامَ mean?",
+            "options": [
+              "in front of",
+              "behind",
+              "to the right of",
+              "next to"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "أَمَامَ (amāma) means 'in front of'. Behind is وَرَاءَ, to the right is عَنْ يَمِينِ, and next to is بِجَانِبِ.",
+            "incorrectExplanations": [
+              "Behind in Arabic is وَرَاءَ (warā'a).",
+              "To the right is عَنْ يَمِينِ (ʿan yamīni).",
+              "Next to / beside is بِجَانِبِ (bijānibi)."
+            ]
+          }
+        },
+        {
+          "id": "d1-s2",
+          "arabic": "ٱلْمَدْرَسَةُ وَرَاءَ ٱلْبَيْتِ",
+          "english": "The school is behind the house.",
+          "transliteration": "al-madrasatu warā'a al-bayti",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 13,
+              "arabic": "ٱلْمَدْرَسَةُ",
+              "transliteration": "al-madrasatu",
+              "meaning": "the school",
+              "partOfSpeech": "noun",
+              "grammarNote": "Definite noun with the article اَلْ-. The final ـُ is the nominative case marker."
+            },
+            {
+              "start": 14,
+              "end": 21,
+              "arabic": "وَرَاءَ",
+              "transliteration": "warā'a",
+              "meaning": "behind",
+              "partOfSpeech": "prep",
+              "grammarNote": "Preposition of place. Takes its object in the genitive case."
+            },
+            {
+              "start": 22,
+              "end": 31,
+              "arabic": "ٱلْبَيْتِ",
+              "transliteration": "al-bayti",
+              "meaning": "the house",
+              "partOfSpeech": "noun",
+              "grammarNote": "Definite noun in the genitive case ( ـِ ), governed by وَرَاءَ."
+            }
+          ],
+          "question": {
+            "prompt": "Why is ٱلْبَيْتِ written with a kasra (-i) at the end?",
+            "options": [
+              "Because it follows the preposition وَرَاءَ and takes the genitive case.",
+              "Because it is the subject of the sentence.",
+              "Because it is a verb.",
+              "Because the article اَلْ- always takes a kasra."
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "After prepositions like وَرَاءَ, the following noun takes the genitive case marker ـِ (kasra).",
+            "incorrectExplanations": [
+              "The subject ٱلْمَدْرَسَةُ takes nominative ـُ, not ـِ.",
+              "ٱلْبَيْتِ is a noun, not a verb.",
+              "The article اَلْ- itself does not impose any case ending on the noun; the noun's case is determined by its grammatical role in the sentence."
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

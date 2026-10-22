@@ -23,6 +23,7 @@ coverage/
 .agents/
 .claude/
 agent/
+skills/
 skills-lock.json
 
 # Predecessor project kept inside this directory only as a reference; not part
@@ -36,3 +37,8 @@ build/
 coverage/
 .cache/
 .tmp/
+
+# Vitest and Playwright caches
+.vitest/
+playwright-report/
+test-results/

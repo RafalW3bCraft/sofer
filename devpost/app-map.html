@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>sofer — app map</title>
+<style>
+:root { --bg: #FAF8F4; --text: #1F1B16; --soft: #5B544C; --accent: #3A7D7B; --border: #E5E0D8; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+  line-height: 1.5; padding: 2rem; max-width: 880px; margin-inline: auto; }
+h1 { font-size: 1.75rem; margin: 0 0 1rem; }
+h2 { font-size: 1.25rem; margin: 2rem 0 0.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.25rem; }
+code { background: #fff; padding: 1px 6px; border-radius: 4px; border: 1px solid var(--border); font-size: 0.95em; }
+pre { background: #fff; padding: 1rem; border-radius: 8px; border: 1px solid var(--border); overflow: auto; }
+.tree { background: #fff; padding: 1rem; border-radius: 8px; border: 1px solid var(--border); white-space: pre; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.85rem; line-height: 1.4; }
+.note { background: #fff; border-left: 4px solid var(--accent); padding: 0.75rem 1rem; border-radius: 0 6px 6px 0; margin: 1rem 0; }
+a { color: var(--accent); }
+ul { padding-left: 1.25rem; }
+li { margin-bottom: 0.25rem; }
+</style>
+</head>
+<body>
+<h1>sofer — app map</h1>
+<p>A compact guide to the sofer codebase, written so you can read it in 3–5 minutes and reuse one practice the next time you start a project with an agent.</p>
+
+<h2>What sofer does</h2>
+<p>sofer teaches Modern Standard Arabic to English-speaking beginners through <strong>tappable tokens on real beginner sentences</strong>. The learner reads a vowelled Arabic sentence, taps any word to see its contextual meaning and a one-sentence grammar note, answers a 4-option comprehension question, and tracks progress in browser localStorage. An optional "Explain with AI tutor" button calls the AMD Token Factory chat-completions endpoint through a small Express proxy.</p>
+
+<h2>The kernel (where to start reading)</h2>
+<div class="note">
+The whole product hangs on one interaction: <strong>tap a token → see a real explanation</strong>. Everything else is supporting structure for that interaction.
+</div>
+
+<h2>File structure</h2>
+<div class="tree">sofer/
+├── README.md, LICENSE, .env.example, .gitignore
+├── package.json (root: orchestrates client + server + scripts)
+├── client/                          React + TypeScript + Vite SPA
+│   ├── index.html, vite.config.ts   Dev server :5173 proxies /api -> :3001
+│   ├── src/main.tsx                 React entry + BrowserRouter
+│   ├── src/App.tsx                  Routes + Header
+│   ├── src/pages/
+│   │   ├── Home.tsx                 Landing + Start Learning
+│   │   ├── LessonList.tsx           3 lessons, completion state from storage
+│   │   ├── LessonPlayer.tsx         The kernel: SentenceArea + TokenPanel + QuestionArea
+│   │   ├── Alphabet.tsx             28 letters + 3 diacritics
+│   │   └── Progress.tsx             Counters + tricky tokens list + reset
+│   ├── src/components/
+│   │   ├── Header.tsx               Wordmark + nav, mobile disclosure
+│   │   ├── SentenceArea.tsx         RTL sentence, tappable tokens, arrow-key step
+│   │   ├── TokenPanel.tsx           Curated explanation, Listen, Mark tricky, AI tutor
+│   │   ├── QuestionArea.tsx         MCQ + deterministic grading + feedback
+│   │   └── AiTutorButton.tsx        Calls /api/ai/explain, renders ok or fallback
+│   ├── src/lib/
+│   │   ├── storage.ts               versioned localStorage, Zod-validated reads
+│   │   ├── grading.ts               pure gradeAnswer(q, selected)
+│   │   ├── speech.ts                Arabic voice detection + speakArabic
+│   │   └── ai.ts                    fetch wrapper for /api/ai/explain
+│   └── src/content/
+│       ├── lessons.json             3 lessons, 7 sentences, per-token offsets
+│       └── alphabet.json            28 letters + 3 diacritics
+├── server/                          Node + Express + TypeScript
+│   ├── index.ts                     App factory; /api/health, /api/ai/*; serves client/dist in prod
+│   ├── routes/explain.ts            POST /api/ai/explain, rate-limit, schema validate
+│   ├── lib/tokenfactory.ts          Adapter to Token Factory /chat/completions
+│   ├── lib/logger.ts                Safe logger (redacts Bearer tokens)
+│   └── build.ts                     esbuild production build (server + shared schemas)
+├── shared/schemas.ts                Zod schemas reused by client + server
+├── scripts/
+│   ├── validate-lessons.ts          Fail build if lessons.json is malformed
+│   ├── validate-alphabet.ts         Fail build if alphabet.json is malformed
+│   └── hygiene.ts                   Fail build if tracked files contain secrets or OmniLangTutor
+├── tests/
+│   ├── unit/                        grading, lessons-schema, alphabet-schema
+│   ├── integration/                 explain-route with mock Token Factory
+│   └── e2e/                         Playwright: full lesson flow + alphabet
+├── devpost/
+│   ├── scope.md, prd.md, spec.md    Approved planning docs
+│   ├── checklist.md                 Build verification matrix
+│   └── app-map.html                 this file
+└── .gitignore                       Keeps .env, OmniLangTutor/, dist/, node_modules/ out
+</div>
+
+<h2>The kernel in 4 code locations</h2>
+<p>To trace the kernel in the code, open these in order:</p>
+<ol>
+<li><code>client/src/content/lessons.json</code> — one lesson with two tokens; the data the kernel renders against.</li>
+<li><code>client/src/pages/LessonPlayer.tsx</code> — the page that wires SentenceArea, TokenPanel, and QuestionArea together.</li>
+<li><code>client/src/components/SentenceArea.tsx</code> — renders the RTL Arabic line with one button per token, handles arrow-key focus stepping.</li>
+<li><code>client/src/components/TokenPanel.tsx</code> — opens on tap; shows the curated meaning, grammar note, Listen, Mark tricky, and an AI tutor button.</li>
+</ol>
+
+<h2>One practice to reuse next time</h2>
+<div class="note">
+<strong>Author the data before the type definitions.</strong> When you sit down to build something where the content has internal structure (lessons with tokens, recipes with steps, items with properties), author two or three real examples of the content first, then write the schema that describes what you actually wrote. Trying to write the schema first leads to schemas that don't match the real shape of the data; writing the data first lets the schema catch the genuine invariants. sofer's <code>client/src/content/lessons.json</code> was authored by hand with deliberate Arabic diacritics, then <code>scripts/validate-lessons.ts</code> grew up around the invariants the data needed (offsets match substring, unique IDs, 4 options per question, exactly 7 sentences).
+</div>
+
+<h2>How to demo it</h2>
+<ol>
+<li><code>npm install && npm --prefix client install && npm --prefix server install</code></li>
+<li><code>npm run dev</code> — opens <code>http://127.0.0.1:5173</code></li>
+<li>Click <strong>Start Learning</strong> → pick any lesson → tap a token → see the curated explanation</li>
+<li>Press <kbd>Tab</kbd> to step through tokens by keyboard, <kbd>Esc</kbd> to close the panel</li>
+<li>Answer the question → see the curated explanation → next sentence</li>
+<li>Open <strong>Progress</strong> → confirm 1 lesson, 1 question, accuracy</li>
+<li>Reload the tab → progress is still there</li>
+</ol>
+
+<h2>Where to read next</h2>
+<ul>
+<li><code>devpost/spec.md</code> — full technical spec with stack rationale and external services</li>
+<li><code>devpost/prd.md</code> — product requirements, core journey, states</li>
+<li><code>devpost/scope.md</code> — kernel, POC boundary, what's deferred</li>
+<li><code>devpost/checklist.md</code> — verified slices and the build matrix</li>
+</ul>
+</body>
+</html>

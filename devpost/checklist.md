@@ -9,7 +9,7 @@ Build mode: fast (verification mandatory; learner checkpoints at the early-feedb
 
 ## Slices
 
-- [ ] **1. Runnable kernel — landing + first sentence + one tappable token + curated explanation**
+- [x] **1. Runnable kernel — landing + first sentence + one tappable token + curated explanation**
   Becomes usable: A `git clone` + `npm install` + `npm run dev` flow renders the landing page, the first lesson (greeting), one Arabic sentence with full diacritics, an English translation, and a tappable token that opens an inline panel with the curated meaning + grammar note. No persistence, no quiz, no AI.
   Why now: This is the entire kernel of sofer. Proving the unique value ("tap a token, see a real explanation on a real sentence") on the first commit means every later slice has a working app to extend, and any framework/setup risk surfaces before content is written.
   PRD ref: `prd.md > The Core Journey` (steps 1–3), `prd.md > Screens and Layout` (Home + Lesson Player), `prd.md > Features and Behavior > Lesson content` and `> Token inspection`
@@ -19,7 +19,7 @@ Build mode: fast (verification mandatory; learner checkpoints at the early-feedb
   Learner check: `cd /home/sp3ct0r/sofer-hackathon && npm install && npm run dev`, open `http://localhost:5173`, click Start Learning, read the greeting, click one Arabic word, and confirm the explanation panel matches what the curated data says.
   Commit: `Slice 1: runnable kernel — landing, one lesson, tappable token`
 
-- [ ] **2. Full lesson content + comprehension loop + persisted progress**
+- [x] **2. Full lesson content + comprehension loop + persisted progress**
   Becomes usable: **Seven** curated MSA sentences across **3 topical lessons** (greetings + numbers + directions, 2–3 sentences each), one 4-option MCQ each with curated correct/incorrect explanations, lesson list with completion checks, deterministic grading, Next/Back navigation, `sofer.progress.v1` localStorage with safe recovery, reload preserves completion, Reset clears it. **Interactive behaviors wired in:** keyboard navigation across tokens (Tab/Shift+Tab, Arrow Left/Right, Enter/Space, Escape), focus + hover preview of token meaning, "Mark as tricky" toggle writing to `sofer.tokens.v1`, and a transliteration reveal toggle on the lesson player.
   Why now: Content + grading + persistence together — these are the inseparable loop that the demo must show end to end. Adds the rest of the user-facing surfaces (Lesson List, Progress).
   PRD ref: `prd.md > The Core Journey` (steps 4–6, 8), `prd.md > Features and Behavior > Lesson content`, `> Comprehension check`, `> Progress tracking`, `prd.md > States and Boundaries` (Corrupted localStorage, Empty state on Progress)
@@ -29,7 +29,7 @@ Build mode: fast (verification mandatory; learner checkpoints at the early-feedb
   Learner check: Walk the full 5-sentence loop. Read each sentence, tap at least one token in each, answer the question (try one wrong on purpose), confirm feedback teaches, advance to next lesson, open Progress, reload the tab, confirm progress persists, hit Reset.
   Commit: `Slice 2: five lessons, comprehension loop, persisted progress`
 
-- [ ] **3. Alphabet intro + accessibility + speech synthesis + RTL polish**
+- [x] **3. Alphabet intro + accessibility + speech synthesis + RTL polish**
   Becomes usable: `/alphabet` page with all 28 letters (isolated form, name, transliteration, optional Listen), a short diacritics intro section, persistent header with mobile menu disclosure, full keyboard nav, visible focus rings against the warm-neutral palette, reduced-motion respected, browser speech synthesis for "Listen" buttons with honest "no Arabic voice" fallback when no `lang="ar"` voice is enumerated, mobile and desktop viewports both usable.
   Why now: The alphabet page is the second main experience in scope. Accessibility, RTL isolation, and speech fallback are the polish layer that determines whether the demo reads as "professional" or as "first React app." Better to land these together so the polish isn't a separate marathon at the end.
   PRD ref: `prd.md > Screens and Layout` (Alphabet intro, Header), `prd.md > Features and Behavior > Browser speech synthesis`, `prd.md > Look and Feel`, `prd.md > States and Boundaries` (Arabic voice unavailable, Reduced motion, Keyboard only)
@@ -39,7 +39,7 @@ Build mode: fast (verification mandatory; learner checkpoints at the early-feedb
   Learner check: Open `/alphabet`, verify all 28 letters visible with names + transliteration, hit Listen on a few (with and without an Arabic voice installed), tab through the whole app from Home with the keyboard only, switch to a narrow mobile viewport and confirm the menu disclosure works.
   Commit: `Slice 3: alphabet, accessibility, speech synthesis, mobile polish`
 
-- [ ] **4. Optional AI tutor — server endpoint + mock-tested adapter + frontend integration**
+- [x] **4. Optional AI tutor — server endpoint + mock-tested adapter + frontend integration**
   Becomes usable: A `POST /api/ai/explain` endpoint in `server/` that validates input with Zod, calls Token Factory via a thin adapter (`server/lib/tokenfactory.ts`) when `TOKENFACTORY_API_KEY` is set, validates the response shape, and returns either `{ explanation, model, generatedAt, cached }` or a structured 503. The frontend `AiTutorButton` + `useAiExplain` hook calls the endpoint, renders the explanation as plain text in a labeled panel, and on any failure shows the curated fallback with an "AI tutor unavailable" pill. No `TOKENFACTORY_API_KEY` on this machine → live integration stays "unverified"; mock tests prove the success and failure paths.
   Why now: The AI tutor is the most uncertain piece (third-party API, network calls, schema validation). It's deferred in scope but the spec's risk-first sequencing says isolate it before the polish of release work so a missing key doesn't block the rest.
   PRD ref: `prd.md > Features and Behavior > AI tutor (optional)`, `prd.md > States and Boundaries` (AI tutor unavailable, Token Factory returns a non-schema response)
@@ -49,7 +49,7 @@ Build mode: fast (verification mandatory; learner checkpoints at the early-feedb
   Learner check: With no key set, click "Explain with AI tutor" on a token — confirm the curated fallback renders with the "AI tutor unavailable" pill. If you have a real `TOKENFACTORY_API_KEY` and want to verify live: drop it in `.env`, restart `npm run dev`, click again, confirm a real schema-validated explanation renders labeled "Generated by AI · Model X."
   Commit: `Slice 4: AI tutor endpoint + mock-tested Token Factory adapter`
 
-- [ ] **5. Release quality — clean reinstall, production build, tests, README, LICENSE, .env.example, app map, demo script**
+- [x] **5. Release quality — clean reinstall, production build, tests, README, LICENSE, .env.example, app map, demo script**
   Becomes usable: A clean clone on a fresh machine — `npm install && npm run dev` boots the full app, `npm run build && npm start` serves the production build, `npm test` passes the unit + integration suite, `npm run test:e2e` runs the Playwright browser flow once Chromium is installed. README is honest about what works locally, what's optional, what credentials are needed. LICENSE is present. `.env.example` contains only variable names. `devpost/checklist.md` Final Review and Code Tour + App Map sections are completed. `devpost/app-map.html` is generated. `devpost/demo-script.md` is drafted. Repo hygiene audit passes: no secrets in tracked files, `OmniLangTutor/` not tracked, no `node_modules`/`dist` in tree, `learner-profile.md` gitignored.
   Why now: This is what a Devpost reviewer sees on first inspection. Without this slice the build isn't submittable.
   PRD ref: `devpost/prd.md > What We're Building`
@@ -61,26 +61,26 @@ Build mode: fast (verification mandatory; learner checkpoints at the early-feedb
 
 ## Hands-on Checkpoints
 
-- [ ] Early usable behavior explored — at end of Slice 1 (kernel up: home → first sentence → tap a token)
-- [ ] Final kick-the-tires exploration and feedback completed — at end of Slice 5
+- [x] Early usable behavior explored — at end of Slice 1 (kernel up: home → first sentence → tap a token)
+- [x] Final kick-the-tires exploration and feedback completed — at end of Slice 5
 
 ## Final Review
 
 <!-- Add agreed revision tasks as unchecked boxes here. Track findings and verification briefly. -->
 
-- [ ] Final review complete — feedback resolved and learner confirms ready to ship
+- [x] Final review complete — feedback resolved and learner confirms ready to ship
 
 ## Code Tour and App Map
 
-- [ ] Learning activity complete — guided route, focused alternative, prior practice connected, or brief recap
-- [ ] Optional edit and transfer reflection addressed
-- [ ] `devpost/app-map.html` generated from finished code, checked, and shown, including a project-grounded practice to reuse
+- [x] Learning activity complete — guided route, focused alternative, prior practice connected, or brief recap
+- [x] Optional edit and transfer reflection addressed
+- [x] `devpost/app-map.html` generated from finished code, checked, and shown, including a project-grounded practice to reuse
 
-Activity and evidence: [filled in during the build]
-Route and stops: [filled in during the build]
-Edit outcome: [filled in during the build]
-Reflection: [filled in during the build]
-Activity mode: [filled in during the build]
+Activity and evidence: 5 slices implemented and mechanically verified. validate-lessons (3 lessons, 7 sentences, 21 tokens with correct offsets), validate-alphabet (28 unique letters, 3 diacritics), tsc client + server clean, vitest 18/18 (grading 4, lessons-schema 5, alphabet-schema 2, explain-route 7), playwright 2/2 (full lesson flow including reload persistence, alphabet). Production build: client 62 modules / 254 KB JS, server esbuild output. Live curl smoke: /api/health 200, /api/ai/explain 400 on bad body, 503 provider_unavailable with no key, 429 after 30 reqs/min, / SPA fallback 200.
+Route and stops: client/src/pages/Home.tsx → client/src/pages/LessonList.tsx → client/src/pages/LessonPlayer.tsx → client/src/components/SentenceArea.tsx → client/src/components/TokenPanel.tsx → client/src/components/QuestionArea.tsx → client/src/pages/Progress.tsx → client/src/pages/Alphabet.tsx. Backend: server/index.ts → server/routes/explain.ts → server/lib/tokenfactory.ts. Shared: shared/schemas.ts.
+Edit outcome: not applicable (no learner-driven edit during build; learner explicitly approved and asked for completion).
+Reflection: declined (learner did not opt in to a reflection interview; the app-map carries the project-grounded practice).
+Activity mode: live app + tests + production server smoke.
 
 ## Revisions
 

@@ -1,0 +1,222 @@
+{
+  "version": 1,
+  "letters": [
+    {
+      "id": "alif",
+      "name": "alif",
+      "isolated": "ا",
+      "transliteration": "ā / ʾ",
+      "sound": "a long 'a' (or a glottal stop when alone)",
+      "position": 1
+    },
+    {
+      "id": "ba",
+      "name": "bāʾ",
+      "isolated": "ب",
+      "transliteration": "b",
+      "sound": "like English 'b'"
+    },
+    {
+      "id": "ta",
+      "name": "tāʾ",
+      "isolated": "ت",
+      "transliteration": "t",
+      "sound": "like English 't'"
+    },
+    {
+      "id": "tha",
+      "name": "thāʾ",
+      "isolated": "ث",
+      "transliteration": "th",
+      "sound": "like English 'th' in 'think'"
+    },
+    {
+      "id": "jim",
+      "name": "jīm",
+      "isolated": "ج",
+      "transliteration": "j",
+      "sound": "like English 'j' in 'jam'"
+    },
+    {
+      "id": "ha",
+      "name": "ḥāʾ",
+      "isolated": "ح",
+      "transliteration": "ḥ",
+      "sound": "a strong, breathy 'h' from the throat"
+    },
+    {
+      "id": "kha",
+      "name": "khāʾ",
+      "isolated": "خ",
+      "transliteration": "kh",
+      "sound": "like Scottish 'loch' or German 'Bach'"
+    },
+    {
+      "id": "dal",
+      "name": "dāl",
+      "isolated": "د",
+      "transliteration": "d",
+      "sound": "like English 'd'"
+    },
+    {
+      "id": "dhal",
+      "name": "dhāl",
+      "isolated": "ذ",
+      "transliteration": "dh",
+      "sound": "like English 'th' in 'this'"
+    },
+    {
+      "id": "ra",
+      "name": "rāʾ",
+      "isolated": "ر",
+      "transliteration": "r",
+      "sound": "a rolled 'r'"
+    },
+    {
+      "id": "zay",
+      "name": "zāy",
+      "isolated": "ز",
+      "transliteration": "z",
+      "sound": "like English 'z'"
+    },
+    {
+      "id": "sin",
+      "name": "sīn",
+      "isolated": "س",
+      "transliteration": "s",
+      "sound": "like English 's'"
+    },
+    {
+      "id": "shin",
+      "name": "shīn",
+      "isolated": "ش",
+      "transliteration": "sh",
+      "sound": "like English 'sh' in 'shoe'"
+    },
+    {
+      "id": "sad",
+      "name": "ṣād",
+      "isolated": "ص",
+      "transliteration": "ṣ",
+      "sound": "a heavy 's', farther back in the mouth"
+    },
+    {
+      "id": "dad",
+      "name": "ḍād",
+      "isolated": "ض",
+      "transliteration": "ḍ",
+      "sound": "a heavy 'd', farther back in the mouth"
+    },
+    {
+      "id": "tah",
+      "name": "ṭāʾ",
+      "isolated": "ط",
+      "transliteration": "ṭ",
+      "sound": "a heavy 't', farther back in the mouth"
+    },
+    {
+      "id": "zah",
+      "name": "ẓāʾ",
+      "isolated": "ظ",
+      "transliteration": "ẓ",
+      "sound": "a heavy 'dh'"
+    },
+    {
+      "id": "ayn",
+      "name": "ʿayn",
+      "isolated": "ع",
+      "transliteration": "ʿ",
+      "sound": "a voiced pharyngeal 'a' (no English equivalent)"
+    },
+    {
+      "id": "ghin",
+      "name": "ghayn",
+      "isolated": "غ",
+      "transliteration": "gh",
+      "sound": "a gargled 'g' or French 'r'"
+    },
+    {
+      "id": "fa",
+      "name": "fāʾ",
+      "isolated": "ف",
+      "transliteration": "f",
+      "sound": "like English 'f'"
+    },
+    {
+      "id": "qaf",
+      "name": "qāf",
+      "isolated": "ق",
+      "transliteration": "q",
+      "sound": "a hard 'k' from the back of the throat"
+    },
+    {
+      "id": "kaf",
+      "name": "kāf",
+      "isolated": "ك",
+      "transliteration": "k",
+      "sound": "like English 'k'"
+    },
+    {
+      "id": "lam",
+      "name": "lām",
+      "isolated": "ل",
+      "transliteration": "l",
+      "sound": "like English 'l'"
+    },
+    {
+      "id": "mim",
+      "name": "mīm",
+      "isolated": "م",
+      "transliteration": "m",
+      "sound": "like English 'm'"
+    },
+    {
+      "id": "nun",
+      "name": "nūn",
+      "isolated": "ن",
+      "transliteration": "n",
+      "sound": "like English 'n'"
+    },
+    {
+      "id": "hah",
+      "name": "hāʾ",
+      "isolated": "ه",
+      "transliteration": "h",
+      "sound": "like English 'h'"
+    },
+    {
+      "id": "waw",
+      "name": "wāw",
+      "isolated": "و",
+      "transliteration": "w / ū",
+      "sound": "like English 'w' (or long 'u')"
+    },
+    {
+      "id": "ya",
+      "name": "yāʾ",
+      "isolated": "ي",
+      "transliteration": "y / ī",
+      "sound": "like English 'y' (or long 'i')"
+    }
+  ],
+  "diacritics": [
+    {
+      "mark": "َ",
+      "name": "fatḥa",
+      "sound": "short 'a'",
+      "example": "كَتَبَ (kataba, 'he wrote')"
+    },
+    {
+      "mark": "ِ",
+      "name": "kasra",
+      "sound": "short 'i'",
+      "example": "كِتَاب (kitāb, 'book')"
+    },
+    {
+      "mark": "ُ",
+      "name": "ḍamma",
+      "sound": "short 'u'",
+      "example": "كُتُب (kutub, 'books')"
+    }
+  ]
+}
