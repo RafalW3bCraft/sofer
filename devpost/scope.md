@@ -1,6 +1,6 @@
 ---
 doc: scope
-status: draft
+status: approved
 ---
 
 # sofer
@@ -38,15 +38,20 @@ A stranger can clone `https://github.com/RafalW3bCraft/sofer`, follow `README.md
 
 ## The POC Boundary
 **In.**
-- Five curated MSA beginner sentences grouped into 2–3 topical lessons.
+- **Seven** curated MSA beginner sentences grouped into **3 topical lessons** (greetings + numbers + directions, expanded for variety).
 - Introductory Arabic alphabet page (28 letters + a few key diacritics) as the second main experience.
 - Per-token tap-to-inspect with curated annotations (meaning, part of speech, grammar note, optional transliteration).
 - One multiple-choice comprehension question per sentence with deterministic grading and curated correct/incorrect explanations.
-- Versioned localStorage progress (lessons completed, accuracy, last activity, last lesson pointer) with safe recovery from corrupted storage.
-- Minimal Node/Express backend exposing `POST /api/ai/explain` behind a narrowly scoped schema-validated request. Mock-tested. Live-testable when `TOKENFACTORY_API_KEY` is configured.
+- **Interactive surface per sentence, beyond tap-to-inspect:**
+  - Keyboard-navigable token targets (Tab/Shift+Tab, Enter/Space to open, Escape to close, Arrow keys to step through tokens in a sentence).
+  - Inline "highlight on hover" preview of the token meaning before tap (focus + hover styles; readable on touch via keyboard).
+  - One "Mark this token as tricky" affordance per token (locally remembered in `sofer.tokens.v1`, optional, with a small "Tricky tokens" panel in the Progress screen).
+  - Optional transliteration toggle that re-renders with a learner-friendly scheme (no RTL flip, just toggle visibility).
+- Versioned localStorage progress (lessons completed, accuracy, last activity, last lesson pointer) with safe recovery from corrupted storage. Includes the per-token "tricky" set.
+- Minimal Node/Express backend exposing `POST /api/ai/explain` behind a narrowly scoped schema-validated request. Mock-tested. Live-callable when `TOKENFACTORY_API_KEY` is configured.
 - Browser speech synthesis for the inspected word/phrase when an Arabic voice is available; honest "no Arabic voice" fallback otherwise.
 - Static, accessible, mobile-first React + TypeScript + Vite frontend.
-- Real automated tests: unit (lesson schema validation, token lookup, grading), integration (server route with mock Token Factory), browser E2E (one full lesson flow with Playwright).
+- Real automated tests: unit (lesson schema validation, token lookup, grading, tricky-token store), integration (server route with mock Token Factory + a live connectivity smoke that runs only when `TOKENFACTORY_API_KEY` is set), browser E2E (one full lesson flow with Playwright covering the keyboard flow).
 - README, LICENSE, `.env.example`, planning docs, app map, security notes, honest limitations.
 
 **Out (for this POC).**
@@ -56,7 +61,7 @@ A stranger can clone `https://github.com/RafalW3bCraft/sofer`, follow `README.md
 - A dictionary / vocabulary list / spaced repetition.
 - Sentence generation, conversation buddy, cultural context panels.
 - Pronunciation scoring, speech recognition, accent analysis.
-- More than five sentences in the MVP module.
+- More than seven sentences in the MVP module.
 - Production deployment beyond `npm run preview` locally. (Deployment is optional per the hackathon rules; the README documents a static-host path but does not publish.)
 
 ## Later

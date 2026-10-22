@@ -1,6 +1,6 @@
 ---
 doc: prd
-status: draft
+status: approved
 ---
 
 # sofer — Product Requirements
@@ -13,7 +13,7 @@ Source: `scope.md > [Project Name]`, `scope.md > The Core Loop`, `scope.md > Wha
 
 The complete path, end to end — arrival, first use, the core loop, what counts as success. Numbered steps in plain language, concrete enough that a stranger could follow along. This is the spine of the document; everything below elaborates on it.
 
-1. **Arrival.** The learner visits `https://rafalw3bcraft.github.io/sofer` (or runs `npm run dev` locally). The landing page loads in under 2 seconds on a modern device, shows the wordmark "sofer" and one sentence of plain-English framing ("Learn your first Arabic sentences."), and one obvious **Start Learning** button. No registration, no paywall, no "pick your dialect" dialog.
+1. **Arrival.** The learner runs `npm run dev` locally and opens the printed URL (default `http://localhost:5173`). The landing page loads in under 2 seconds on a modern device, shows the wordmark "sofer" and one sentence of plain-English framing ("Learn your first Arabic sentences."), and one obvious **Start Learning** button. No registration, no paywall, no "pick your dialect" dialog. (Live hosting is optional and not required for submission — see `spec.md > Where It Runs and How Someone Tries It`.)
 2. **First lesson.** Clicking **Start Learning** opens the first lesson, a curated MSA greeting ("ٱلسَّلَامُ عَلَيْكُمْ" — *Peace be upon you*). The Arabic phrase appears in a large, RTL-corrected display with the English translation below. A small "Show transliteration" toggle reveals an optional beginner transliteration. A "1 of 5" indicator shows progress through the lesson.
 3. **Inspect a word.** The learner taps any Arabic word. A side panel opens (or an inline expansion on small screens) showing: the Arabic word, its transliteration, its contextual English meaning in this sentence, its part of speech, a one-sentence grammar note, and a "Listen" button that uses the browser's speech synthesis with an Arabic voice if available. No scripted "AI" explanation appears unless the learner taps "Explain with AI tutor."
 4. **Comprehension check.** Below the sentence is one multiple-choice question with four answer options. The learner picks one. The grading is deterministic (compare to the curated correct answer). On submit, the chosen option is marked correct or incorrect, the correct answer is highlighted, and a curated explanation appears ("*Saying the greeting is a fixed religious and cultural expression. The 'u' ending makes it formal/polite.*"). No fabricated scoring; no randomized AI answer.
@@ -72,14 +72,32 @@ Used only for "Listen" buttons. No microphone access, no speech recognition, no 
 - **Empty state on Progress.** Before any lesson is completed, Progress shows a short message ("Start your first lesson to see progress here.") and a link to lessons.
 - **AI tutor unavailable.** When Token Factory is not configured or unreachable, the tutor panel shows the curated fallback explanation and a small "AI tutor unavailable — using curated explanation" status. The UI never fabricates an AI response.
 - **Arabic voice unavailable.** The "Listen" button is hidden or disabled with a one-line explanation. The rest of the lesson works.
-- **Corrupted localStorage.** On any JSON parse error or schema mismatch, the app clears the broken key (after showing a one-time inline notice) and starts fresh. No data loss for the learner (since there is no server data), no crash.
+- **Corrupted localStorage.** On any JSON parse error or schema mismatch, the app clears the broken key and starts fresh, showing a one-time inline notice ("Your progress was reset."). The previously stored progress *is* lost in this case — there is no server-side backup to recover it from. The lesson content itself is unaffected. No crash.
 - **Token Factory returns a non-schema response.** Backend returns 503 with `reason: "schema_mismatch"`. Frontend shows the curated fallback.
 - **Reduced motion.** All non-essential transitions are disabled via `@media (prefers-reduced-motion: reduce)`.
-- **Keyboard only.** Every interactive element is reachable with Tab and operable with Enter / Space. Focus rings visible against the warm-neutral palette.
+- **Keyboard only.** Every interactive element is reachable with Tab and operable with Enter / Space. Focus rings visible against the warm-neutral palette. Token targets in a sentence are also reachable with arrow keys; Escape closes the panel.
+
+### Interactive behaviors
+- **Keyboard navigation across tokens.** Tab moves focus from one token to the next in reading order; Shift+Tab goes back. Arrow Left/Right step through tokens within a sentence. Enter or Space opens the Token Panel for the focused token. Escape closes the panel and returns focus to the originating token.
+- **Focus + hover preview.** Focusing or hovering a token surfaces a small inline preview of its contextual meaning below the sentence. On touch (no hover, no keyboard), tapping opens the full panel.
+- **"Mark this token as tricky."** Each token exposes a small toggle ("Mark as tricky" / "Marked tricky") in the Token Panel. State persists under `sofer.tokens.v1` as `{ [tokenId]: { markedAt: ISO8601 } }`. The Progress screen shows a "Tricky tokens" panel listing every marked token with its lesson and a "Jump to lesson" link.
+- **Transliteration toggle.** A "Show transliteration" toggle on the lesson player reveals or hides the learner-friendly transliteration beneath each Arabic line; default hidden to encourage reading the script.
+- **Reading position resume.** The lesson list and Home screen surface a "Continue where you left off" link that opens the first uncompleted lesson.
 
 ## Product Decisions
 
-- **Five sentences in the MVP, not twenty.** The learner prioritizes a working end-to-end loop over breadth. Twenty sentences would either ship with shallow annotations or be deferred past the deadline.
+- A working React + TypeScript + Vite frontend implementing the five surfaces above.
+- A small Node + Express backend exposing `POST /api/ai/explain` behind schema-validated input/output, with a configurable Token Factory adapter and a mock server for tests.
+- **Seven** curated MSA beginner sentences across **3 topical lessons** with full per-token annotations and the interactive behaviors described above (keyboard nav, focus-hover preview, "Mark this token as tricky").
+- A 28-letter Arabic alphabet intro page.
+- Versioned localStorage progress (lessons, questions, accuracy, last activity) plus a `sofer.tokens.v1` store of per-token "tricky" flags.
+- Browser speech synthesis for pronunciation.
+- Real automated tests: unit (lesson schema, grading, storage, tricky-token store, keyboard token stepping), integration (server with mock Token Factory + live connectivity smoke when key is set), browser E2E (one full lesson flow with Playwright including keyboard navigation).
+- Reproducible install: committed `package-lock.json`, documented Node version, `.env.example` with safe defaults.
+- README, LICENSE (MIT), planning docs under `devpost/`, app map, security notes, honest limitations, demo instructions.
+- A demo video under 3 minutes that records the real running application.
+
+- **Seven sentences in the MVP, not twenty.** The learner prioritizes a working end-to-end loop over breadth. Twenty sentences would either ship with shallow annotations or be deferred past the deadline. Seven covers three distinct topics (greetings, numbers, directions) with enough density to prove the kernel without stretching authoring.
 - **Modern Standard Arabic only.** No dialect selection. Egyptian / Levantine / Gulf are explicitly later modules.
 - **No accounts in the MVP.** Versioned localStorage only. The kernel ("tap a token, see a real explanation") does not need a server identity.
 - **Optional AI tutor, not required.** The lesson flow works without `TOKENFACTORY_API_KEY`. The tutor enhances but never gates.
@@ -89,13 +107,14 @@ Used only for "Listen" buttons. No microphone access, no speech recognition, no 
 
 ## What We're Building
 A new public GitHub repository at `https://github.com/RafalW3bCraft/sofer` containing:
+
 - A working React + TypeScript + Vite frontend implementing the five surfaces above.
 - A small Node + Express backend exposing `POST /api/ai/explain` behind schema-validated input/output, with a configurable Token Factory adapter and a mock server for tests.
-- Five curated MSA beginner lessons with full per-token annotations.
+- **Seven** curated MSA beginner sentences across **3 topical lessons** with full per-token annotations and the interactive behaviors in `prd.md > Interactive behaviors`.
 - A 28-letter Arabic alphabet intro page.
-- Versioned localStorage progress with corruption recovery.
+- Versioned localStorage progress plus a `sofer.tokens.v1` per-token "tricky" store.
 - Browser speech synthesis for pronunciation.
-- Real automated tests: unit (lesson schema, grading, storage), integration (server with mock Token Factory), browser E2E (one full lesson flow with Playwright).
+- Real automated tests: unit (lesson schema, grading, storage, tricky-token store, keyboard token stepping), integration (server with mock Token Factory + live connectivity smoke when key is set), browser E2E (one full lesson flow with Playwright including keyboard navigation).
 - Reproducible install: committed `package-lock.json`, documented Node version, `.env.example` with safe defaults.
 - README, LICENSE (MIT), planning docs under `devpost/`, app map, security notes, honest limitations, demo instructions.
 - A demo video under 3 minutes that records the real running application.
