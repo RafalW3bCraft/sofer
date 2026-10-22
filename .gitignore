@@ -1,0 +1,20 @@
+node_modules
+
+# Devpost personal context (learner profile)
+/devpost/learner-profile.md
+
+# Local credentials — never commit
+.env
+.env.*
+!.env.example
+
+# Build artifacts
+dist/
+build/
+coverage/
+
+# OS / editor
+.DS_Store
+*.log
+.vscode/
+.idea/
