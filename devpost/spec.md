@@ -11,7 +11,7 @@ sofer has two halves.
 
 The **frontend** is a single-page web app: a React + TypeScript + Vite application that runs in the learner\'s browser. It holds five screens (Home, Lesson List, Lesson Player, Alphabet, Progress). It loads curated lesson content (the five MSA beginner sentences with full per-token annotations) from a static JSON file at build time. It reads and writes the learner\'s progress to the browser\'s localStorage under a single versioned key. When the learner taps "Explain with AI tutor," the frontend makes a small, schema-validated HTTP request to the backend\'s `/api/ai/explain` endpoint.
 
-The **backend** is a tiny Node + Express server. Its only job is to act as a secure gateway between the learner\'s browser and the AMD Token Factory API. The backend holds the `TOKENFACTORY_API_KEY` so the key never reaches the browser, validates the request shape, calls Token Factory, validates the response shape, and returns a structured payload to the frontend. When Token Factory is unavailable or returns an unexpected response, the backend returns a structured 503 and the frontend shows the curated fallback.
+The **backend** is a tiny Node + Express server. Its only job is to act as a secure gateway between the learner\'s browser and a Token Factory API (Nebius Token Factory by default — see `External Services and Dependencies`). The backend holds the `TOKENFACTORY_API_KEY` so the key never reaches the browser, validates the request shape, calls Token Factory, validates the response shape, and returns a structured payload to the frontend. When Token Factory is unavailable or returns an unexpected response, the backend returns a structured 503 and the frontend shows the curated fallback.
 
 Both halves are deployed from the same repository. For local development the frontend runs on Vite\'s dev server (port 5173) and the backend runs on port 3001, with Vite proxying `/api/*` to the backend. For a production preview, the frontend is built into static assets and the backend serves them. The submission is verified to run via `npm install && npm run dev` and via `npm run build && npm start`.
 
@@ -57,7 +57,7 @@ Rationale per learner-selected choice
 - Vitest + Playwright (not Jest + Cypress): faster, smaller, and the OmniLanguageTutor audit showed no existing tests, so the new project gets a clean baseline.
 
 Anything unverified
-- **Token Factory model selection.** The actual provider model list is not yet retrieved. `4-spec` will perform a model discovery request once `TOKENFACTORY_API_KEY` is supplied. Until then, `TOKENFACTORY_MODEL` defaults to a placeholder string and the backend returns a clear "model not configured" error if the live path is hit.
+- **Token Factory model selection.** ~~Not yet retrieved~~ — resolved during `5-build`: a live `GET /models` against Nebius Token Factory (2026-10-23) returned 29 models; `TOKENFACTORY_MODEL` defaults to the verified `Qwen/Qwen3-235B-A22B-Instruct-2507`. See `docs/release/live-smoke.md`.
 - **Arabic speech voice availability** is browser- and OS-dependent; the spec handles this with the "Listen button hidden when no Arabic voice" fallback described in `prd.md > Features and Behavior`.
 
 ## Where It Runs and How Someone Tries It
@@ -297,9 +297,13 @@ No `node_modules` in the tree. No legacy scaffold files. No Spanish content. No 
 
 ## External Services and Dependencies
 
-### AMD Token Factory (provider)
-Endpoint: `POST {TOKENFACTORY_BASE_URL}/chat/completions`, with `GET {TOKENFACTORY_BASE_URL}/models` for discovery. Auth: `Authorization: Bearer $TOKENFACTORY_API_KEY`. Body: OpenAI-compatible chat completions payload, with parameters known to be supported by the chosen model (validated against the actual model list during `4-spec`).
-Docs: https://amd-aim.github.io/radeon-cloud-docs/guides/token-factory/ and https://amd-aim.github.io/radeon-cloud-docs/api/chat-completions/.
+### Token Factory provider (Nebius by default; AMD is a different provider)
+Endpoint: `POST {TOKENFACTORY_BASE_URL}/chat/completions`, with `GET {TOKENFACTORY_BASE_URL}/models` for discovery. Auth: `Authorization: Bearer $TOKEN...EY`. Body: OpenAI-compatible chat completions payload, with parameters known to be supported by the chosen model.
+
+Two providers expose this shape. **They are different companies, accounts, and keys — not regions of one service.** A key from one returns 401 at the other (verified 2026-10-23).
+
+- **Nebius Token Factory** — `https://api.tokenfactory.nebius.com/v1`. The verified live hackathon credential is a Nebius key; this is the server default. Live-smoked 2026-10-23 (`GET /models` 200, 29 models; `POST /chat/completions` 200 with `Qwen/Qwen3-235B-A22B-Instruct-2507`). Evidence: `docs/release/live-smoke.md`.
+- **AMD Radeon Cloud Token Factory** — `https://developer.amd.com.cn/radeon/api/v1` (China site). Docs: https://amd-aim.github.io/radeon-cloud-docs/guides/token-factory/ and https://amd-aim.github.io/radeon-cloud-docs/api/chat-completions/. Requires its own AMD-issued key. **Not live-tested** — the Nebius hackathon key returns 401 there.
 
 Limits enforced by the server
 - `TOKENFACTORY_TIMEOUT_MS` (default 15000) — abort via `AbortController`.
@@ -353,12 +357,12 @@ All dependencies chosen for actual functionality, not for legacy compatibility w
 
 Decisions
 - **Stack: React + TypeScript + Vite + Express + Zod + Vitest + Playwright.** Tradeoff: small, well-understood, fast to ship, easy to review. Cost: hand-rolled accessibility and rate limiting.
-- **AI provider: AMD Token Factory only.** Per the latest directive; no fallback to other providers is supported. Tradeoff: a single point of failure for live integration; mitigated by the curated fallback.
+- **AI provider: Token Factory via Nebius endpoint by default** (the provider the authorized hackathon key actually belongs to). The AMD Radeon Cloud endpoint is configurable via `TOKENFACTORY_BASE_URL` but is a separate provider with its own keys and was not live-tested. Tradeoff: a single point of failure for live integration; mitigated by the curated fallback.
 - **No production deployment.** Tradeoff: the submission is verified locally, not over the public internet. Acceptable for a Devpost POC.
 - **Vanilla CSS over Tailwind.** Tradeoff: more lines of CSS, smaller bundle, less dependency surface.
 
 Genuine learner uncertainty
-- **Token Factory model selection.** The actual model list has not been retrieved (no live credential on this machine). `4-spec` will perform a `GET /models` discovery call once `TOKENFACTORY_API_KEY` is supplied, then update `TOKENFACTORY_MODEL` in `.env.example` with a real identifier. Until then, `TOKENFACTORY_MODEL` is a placeholder and live integration is documented as **unverified**.
+- ~~**Token Factory model selection.**~~ Resolved post-spec during `5-build`: live `GET /models` against Nebius Token Factory returned 29 models (2026-10-23); `TOKENFACTORY_MODEL` defaults to the verified `Qwen/Qwen3-235B-A22B-Instruct-2507`. See `docs/release/live-smoke.md`.
 
 Open issues
 - **Alphabet content depth.** How many letter forms to include (isolated / initial / medial / final). Default in this spec: isolated only. Final decision can be deferred to alphabet page implementation in `5-build`.

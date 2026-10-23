@@ -12,8 +12,8 @@ export function loadExplainEnv(): ExplainEnv {
     apiKey: process.env.TOKENFACTORY_API_KEY ?? null,
     baseUrl:
       process.env.TOKENFACTORY_BASE_URL ??
-      "https://developer.amd.com.cn/radeon/api/v1",
-    model: process.env.TOKENFACTORY_MODEL ?? "DeepSeek-V4-Flash",
+      "https://api.tokenfactory.nebius.com/v1",
+    model: process.env.TOKENFACTORY_MODEL ?? "Qwen/Qwen3-235B-A22B-Instruct-2507",
     timeoutMs: Number(process.env.TOKENFACTORY_TIMEOUT_MS ?? 15000),
   };
 }

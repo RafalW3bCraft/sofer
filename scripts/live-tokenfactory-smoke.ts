@@ -1,5 +1,7 @@
 /**
- * LIVE smoke against the AMD Token Factory API. Reads credentials from the
+ * LIVE smoke against the Token Factory API (Nebius Token Factory by default;
+ * the AMD Radeon Cloud Token Factory endpoint is a different provider that
+ * does NOT accept the Nebius key). Reads credentials from the
  * repo-root .env (which is git-ignored). Never logs the key. Never writes
  * to the repo. Exit code 0 on success, 1 on failure.
  *
@@ -20,8 +22,8 @@ async function main() {
   loadDotenv();
   const apiKey = process.env.TOKENFACTORY_API_KEY ?? "";
   const baseUrl =
-    process.env.TOKENFACTORY_BASE_URL ?? "https://developer.amd.com.cn/radeon/api/v1";
-  const model = process.env.TOKENFACTORY_MODEL ?? "DeepSeek-V4-Flash";
+    process.env.TOKENFACTORY_BASE_URL ?? "https://api.tokenfactory.nebius.com/v1";
+  const model = process.env.TOKENFACTORY_MODEL ?? "Qwen/Qwen3-235B-A22B-Instruct-2507";
 
   if (!apiKey) {
     console.error("smoke: TOKENFACTORY_API_KEY is not set; aborting.");

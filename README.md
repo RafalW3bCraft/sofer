@@ -3,8 +3,8 @@
 sofer is a calm, accessible web app that teaches **Modern Standard Arabic**
 to English-speaking complete beginners through short curated lessons and
 **tappable tokens on real sentences**. The optional "Explain with AI tutor"
-feature calls the AMD Token Factory chat-completions endpoint through a
-tightly scoped server proxy.
+feature calls a Token Factory chat-completions endpoint (Nebius Token
+Factory by default) through a tightly scoped server proxy.
 
 This repository was built for the Devpost **Build With AI: Basics** hackathon
 (2026), following the official Devpost Learn Skill Pack (`1-start` through
@@ -53,25 +53,29 @@ Without a key, the endpoint returns a structured `503 provider_unavailable`
 and the UI shows the curated fallback explanation with an "AI tutor
 unavailable — using curated explanation" status pill.
 
-### Token Factory endpoints
+### Token Factory providers
 
-There are two documented Token Factory endpoints that speak the same
+"Nebius Token Factory" and "AMD Radeon Cloud Token Factory" are **two
+different providers** with separate accounts and keys — not regions of one
+service. A key issued by one returns 401 at the other. Both speak the same
 OpenAI-compatible shape:
 
-- `https://api.tokenfactory.nebius.com/v1` — the Nebius-region endpoint
-  used by the verified live credential for this submission.
-- `https://developer.amd.com.cn/radeon/api/v1` — the AMD Radeon Cloud
-  endpoint documented at <https://amd-aim.github.io/radeon-cloud-docs/api/overview/>.
-  AMD documentation describes it as development / trial use.
+- `https://api.tokenfactory.nebius.com/v1` — Nebius Token Factory. This is
+  the provider of the verified live credential for this submission, and the
+  server default.
+- `https://developer.amd.com.cn/radeon/api/v1` — AMD Radeon Cloud Token
+  Factory (China site), documented at <https://amd-aim.github.io/radeon-cloud-docs/api/overview/>.
+  Requires its own AMD-issued key; AMD documentation describes it as
+  development / trial use. **Not live-tested for this submission.**
 
-Pick the endpoint that matches your account. After pointing
+Pick the endpoint that matches the account that issued your key. After pointing
 `TOKENFACTORY_BASE_URL` at the right host, run
 `npm run smoke:live` to confirm `GET /models` returns 200 and your
 chosen `TOKENFACTORY_MODEL` is in the list. See
 `docs/release/live-smoke.md` for the verified smoke output.
 
-See `devpost/spec.md > External Services and Dependencies > AMD Token Factory`
-for the exact request/response shape.
+See `devpost/spec.md > External Services and Dependencies > Token Factory
+provider` for the exact request/response shape.
 
 ## What you can do in sofer
 
@@ -155,7 +159,7 @@ inside this directory only as a read-only reference under `OmniLangTutor/`
 this repo is a fresh React + Express + TypeScript application with a
 new Arabic-first curriculum, no Firebase/PostgreSQL/passport, no
 position-based token alignment, no simulated AI responses, and a single
-clearly-labeled AI provider (Token Factory).
+clearly-labeled AI provider (Token Factory — Nebius by default).
 
 ## License
 
