@@ -4,7 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="sofer — a calm, accessible web app that teaches Modern Standard Arabic to complete beginners through tappable tokens on real sentences." />
+    <meta name="theme-color" content="#FAF8F4" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!--
+      Bundled Arabic webfont: ensures consistent glyph rendering on machines
+      that don't ship with a Modern Standard Arabic system font. The fallback
+      list in --font-arabic (tokens.css) covers the common system stacks.
+      The font is loaded with display=swap so the page is usable while it
+      loads. If the network is offline, the system fallback still works
+      on any modern OS.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&display=swap"
+    />
     <title>sofer — Learn your first Arabic sentences</title>
   </head>
   <body>

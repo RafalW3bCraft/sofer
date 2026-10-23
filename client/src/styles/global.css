@@ -15,6 +15,15 @@ a {
   color: var(--color-accent);
 }
 
+/* Any element tagged as Arabic-language text gets the Arabic font and
+   RTL direction. This catches headings and other text that mix Arabic
+   inline fragments without an explicit class. */
+[lang="ar"] {
+  font-family: var(--font-arabic);
+  direction: rtl;
+  unicode-bidi: isolate;
+}
+
 a:focus-visible,
 button:focus-visible,
 [role="button"]:focus-visible,
@@ -208,6 +217,13 @@ summary:focus-visible {
   color: var(--color-text-soft);
 }
 
+/* When lesson-list__topic wraps Arabic (lang=ar), use the Arabic font. */
+.lesson-list__topic[lang="ar"] {
+  font-family: var(--font-arabic);
+  font-size: 1.1rem;
+  color: var(--color-text);
+}
+
 .lesson-list__check {
   color: var(--color-success);
   font-weight: 600;
@@ -344,6 +360,32 @@ summary:focus-visible {
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
+}
+
+/* Any Arabic-language span inside the question gets the Arabic font
+   even if it doesn't have an explicit Arabic class. Catches the
+   inline Arabic fragments in question prompts. */
+.question [lang="ar"],
+.question [dir="rtl"] {
+  font-family: var(--font-arabic);
+  font-size: 1.2em;
+  direction: rtl;
+  unicode-bidi: isolate;
+}
+
+/* Question prompts may contain inline Arabic fragments. The prompt
+   string itself is not wrapped with lang/dir, so we use unicode-bidi
+   plaintext to let the browser auto-detect RTL runs and the
+   font-family fallback to apply Arabic glyphs where they appear. */
+.question h2 {
+  unicode-bidi: plaintext;
+}
+
+/* The ai explain answer and feedback paragraphs may contain Arabic
+   references — give them the bidi-aware treatment too. */
+.question__feedback,
+.ai-explain {
+  unicode-bidi: plaintext;
 }
 
 .question__options {

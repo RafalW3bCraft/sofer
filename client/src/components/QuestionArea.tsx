@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { Question } from "../../../shared/schemas";
 import { gradeAnswer, type GradingResult } from "../lib/grading";
+import { annotateArabic } from "../lib/annotateArabic";
 
 interface Props {
   question: Question;
@@ -33,7 +34,17 @@ export default function QuestionArea({
 
   return (
     <section className="question" aria-label="Comprehension question">
-      <h2 style={{ fontSize: "1.1rem", margin: 0 }}>{question.prompt}</h2>
+      <h2 style={{ fontSize: "1.1rem", margin: 0 }}>
+        {annotateArabic(question.prompt).map((part, i) =>
+          typeof part === "string" ? (
+            <span key={i}>{part}</span>
+          ) : (
+            <span key={i} lang="ar" dir="rtl">
+              {part.arabic}
+            </span>
+          )
+        )}
+      </h2>
       <div className="question__options" role="radiogroup" aria-label="Answer options">
         {question.options.map((opt, i) => {
           const isSelected = selected === i;
@@ -62,7 +73,17 @@ export default function QuestionArea({
               onClick={() => setSelected(i)}
             >
               <span aria-hidden="true">{isSelected ? "●" : "○"}</span>
-              <span>{opt}</span>
+              <span>
+                {annotateArabic(opt).map((part, j) =>
+                  typeof part === "string" ? (
+                    <span key={j}>{part}</span>
+                  ) : (
+                    <span key={j} lang="ar" dir="rtl">
+                      {part.arabic}
+                    </span>
+                  )
+                )}
+              </span>
             </button>
           );
         })}

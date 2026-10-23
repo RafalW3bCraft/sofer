@@ -2,6 +2,7 @@ import alphabetData from "../content/alphabet.json";
 import { AlphabetFileSchema } from "../../../shared/schemas";
 import { useArabicSpeechStatus } from "../lib/useArabicSpeechStatus";
 import { speakArabic } from "../lib/speech";
+import { annotateArabic } from "../lib/annotateArabic";
 
 const alphabet = AlphabetFileSchema.parse(alphabetData);
 
@@ -44,7 +45,17 @@ export default function Alphabet() {
           </li>
         ))}
       </ul>
-      <h2>Short vowels (الحَرَكَات)</h2>
+      <h2>
+        {annotateArabic("Short vowels (الحَرَكَات)").map((part, i) =>
+          typeof part === "string" ? (
+            <span key={i}>{part}</span>
+          ) : (
+            <span key={i} lang="ar" dir="rtl">
+              {part.arabic}
+            </span>
+          )
+        )}
+      </h2>
       <p>
         Arabic normally writes only consonants. Three small marks above and below
         the letters show the short vowels you would pronounce.
@@ -53,7 +64,9 @@ export default function Alphabet() {
         {alphabet.diacritics.map((d) => (
           <li key={d.mark} className="lesson-list__item">
             <span>
-              <span style={{ fontSize: "1.5rem" }}>{d.mark}</span>{" "}
+              <span lang="ar" dir="rtl" style={{ fontFamily: "var(--font-arabic)", fontSize: "1.5rem", marginRight: "var(--space-2)" }}>
+                {d.mark}
+              </span>
               <strong>{d.name}</strong> — {d.sound}
             </span>
             <span className="lesson-list__topic" dir="rtl" lang="ar">

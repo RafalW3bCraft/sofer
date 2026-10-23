@@ -23,8 +23,9 @@
   --space-8: 64px;
 
   --font-arabic:
+    "Noto Naskh Arabic",
     "Geeza Pro", "SF Arabic", "Segoe UI Arabic",
-    "Noto Naskh Arabic", "Amiri", system-ui, sans-serif;
+    system-ui, "Amiri", sans-serif;
   --font-ui:
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter,
     "Helvetica Neue", Arial, sans-serif;
