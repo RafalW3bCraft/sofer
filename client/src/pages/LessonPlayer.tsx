@@ -230,6 +230,10 @@ export default function LessonPlayer() {
           Sentence {sentenceIdx + 1} of {lesson.sentences.length}
           {lessonJustCompleted && " · ✓ Lesson complete"}
         </p>
+        <p className="lesson-hint">
+          Tap any Arabic word below to see its meaning and grammar — then answer
+          the question to continue.
+        </p>
       </header>
 
       <SentenceArea
