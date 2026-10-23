@@ -67,7 +67,6 @@ export default function QuestionArea({
               type="button"
               role="radio"
               aria-checked={isSelected}
-              aria-pressed={isSelected}
               disabled={result !== null}
               className={cls}
               onClick={() => setSelected(i)}

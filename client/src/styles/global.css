@@ -135,7 +135,7 @@ summary:focus-visible {
 
 .site-nav a[aria-current="page"] {
   background: var(--color-accent-soft);
-  color: var(--color-accent);
+  color: var(--color-accent-strong);
 }
 
 .site-menu {
@@ -588,7 +588,7 @@ summary:focus-visible {
   }
   details.site-menu a[aria-current="page"] {
     background: var(--color-accent-soft);
-    color: var(--color-accent);
+    color: var(--color-accent-strong);
   }
   .sentence-area__arabic {
     font-size: 1.85rem;
