@@ -21,6 +21,20 @@ export function createApp(): express.Express {
   // request plus Token Factory prompt scaffolding.
   app.use(express.json({ limit: "8kb" }));
 
+  // Baseline security headers for every response. The SPA is self-contained
+  // (bundled assets, no inline scripts, no third-party origins besides the
+  // same-origin API), so a restrictive CSP is safe.
+  app.use((_req: Request, res: Response, next: NextFunction) => {
+    res.setHeader("X-Content-Type-Options", "nosniff");
+    res.setHeader("X-Frame-Options", "DENY");
+    res.setHeader("Referrer-Policy", "no-referrer");
+    res.setHeader(
+      "Content-Security-Policy",
+      "default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'"
+    );
+    next();
+  });
+
   app.get("/api/health", (_req: Request, res: Response) => {
     res.json({
       ok: true,

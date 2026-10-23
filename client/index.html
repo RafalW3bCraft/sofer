@@ -7,19 +7,13 @@
     <meta name="theme-color" content="#FAF8F4" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <!--
-      Bundled Arabic webfont: ensures consistent glyph rendering on machines
-      that don't ship with a Modern Standard Arabic system font. The fallback
-      list in --font-arabic (tokens.css) covers the common system stacks.
-      The font is loaded with display=swap so the page is usable while it
-      loads. If the network is offline, the system fallback still works
-      on any modern OS.
+      Self-hosted Arabic webfont (Noto Naskh Arabic, Arabic Unicode subset,
+      OFL-licensed): ensures consistent glyph rendering on machines that
+      don't ship with an MSA system font. Loaded via @font-face in
+      src/styles/global.css with font-display: swap; the system-font
+      fallback list in --font-arabic (tokens.css) still applies if the
+      file can't be fetched. No third-party font CDN is contacted.
     -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&display=swap"
-    />
     <title>sofer — Learn your first Arabic sentences</title>
   </head>
   <body>

@@ -1,3 +1,19 @@
+/* Self-hosted Noto Naskh Arabic (Arabic Unicode subset only, OFL license).
+   Served from /fonts by both Vite dev and the production static handler, so
+   no third-party font CDN is contacted and the strict CSP (font-src 'self')
+   holds. font-display: swap keeps the page usable on slow networks. */
+@font-face {
+  font-family: "Noto Naskh Arabic";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/noto-naskh-arabic-arabic.woff2") format("woff2");
+  unicode-range:
+    U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF,
+    U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74,
+    U+FE76-FEFC;
+}
+
 * { box-sizing: border-box; }
 
 html, body {
