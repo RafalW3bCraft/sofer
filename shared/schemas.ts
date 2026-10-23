@@ -114,6 +114,31 @@ export const ProgressV1Schema = z.object({
 });
 export type ProgressV1 = z.infer<typeof ProgressV1Schema>;
 
+// V2 records one entry per submitted sentence answer. The lesson
+// is "completed" only when every required sentence has a recorded
+// answer (correctness is independent of completion). Re-submitting
+// the same sentence does NOT inflate totals.
+export const AnswerRecordSchema = z.object({
+  correct: z.boolean(),
+  answeredAt: z.string().min(1),
+});
+export type AnswerRecord = z.infer<typeof AnswerRecordSchema>;
+
+export const LessonProgressV2Schema = z.object({
+  completedAt: z.string().min(1).nullable(),
+  answers: z.record(z.string(), AnswerRecordSchema), // keyed by sentenceId
+});
+export type LessonProgressV2 = z.infer<typeof LessonProgressV2Schema>;
+
+export const ProgressV2Schema = z.object({
+  schemaVersion: z.literal(2),
+  lessons: z.record(z.string(), LessonProgressV2Schema),
+  totalQuestionsAnswered: z.number().int().nonnegative(),
+  totalQuestionsCorrect: z.number().int().nonnegative(),
+  lastActivityAt: z.string().min(1),
+});
+export type ProgressV2 = z.infer<typeof ProgressV2Schema>;
+
 export const TrickyTokensV1Schema = z.object({
   schemaVersion: z.literal(1),
   tricky: z.record(z.string(), z.object({ markedAt: z.string().min(1) })),

@@ -14,6 +14,10 @@ import {
   emptyProgress,
   emptyTrickyTokens,
 } from "../lib/storage";
+import {
+  accuracyPercent,
+  lessonsCompletedCount,
+} from "../lib/progress";
 
 const lessonsFile = LessonsFileSchema.parse(lessonsData);
 
@@ -30,13 +34,8 @@ export default function Progress() {
   );
   const [resetting, setResetting] = useState(false);
 
-  const accuracy =
-    progress.totalQuestionsAnswered === 0
-      ? 0
-      : Math.round(
-          (progress.totalQuestionsCorrect / progress.totalQuestionsAnswered) *
-            100
-        );
+  const accuracy = accuracyPercent(progress);
+  const completedCount = lessonsCompletedCount(progress);
 
   const handleReset = () => {
     writeProgress(emptyProgress());
@@ -66,8 +65,15 @@ export default function Progress() {
     <section className="page progress-panel">
       <h1>Your progress</h1>
       {initialReason === "corrupted" && (
-        <p className="notice">
+        <p className="notice" role="status">
           Your saved progress was reset because it could not be read.
+        </p>
+      )}
+      {initialReason === "ok" && initial.ok && initial.migrated && (
+        <p className="notice" role="status">
+          Your progress was upgraded to the new format. Completion flags were
+          cleared because the previous version marked lessons complete after
+          the first answer — the lesson counts you see now are accurate.
         </p>
       )}
       {progress.totalQuestionsAnswered === 0 &&
@@ -85,9 +91,7 @@ export default function Progress() {
         }}
       >
         <div className="progress-stat">
-          <span className="progress-stat__value">
-            {Object.keys(progress.lessons).length}
-          </span>
+          <span className="progress-stat__value">{completedCount}</span>
           <span className="progress-stat__label">Lessons completed</span>
         </div>
         <div className="progress-stat">

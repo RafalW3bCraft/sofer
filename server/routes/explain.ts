@@ -8,6 +8,21 @@ const WINDOW_MS = 60_000;
 const MAX_REQUESTS_PER_WINDOW = 30;
 const hits = new Map<string, number[]>();
 
+// Periodic eviction: when a map entry has no timestamps within the
+// current window, drop it so the table can't grow unboundedly across
+// many distinct IPs. Runs at most once every WINDOW_MS.
+let lastSweep = 0;
+function sweep(): void {
+  const now = Date.now();
+  if (now - lastSweep < WINDOW_MS) return;
+  lastSweep = now;
+  for (const [ip, arr] of hits) {
+    const fresh = arr.filter((t) => now - t < WINDOW_MS);
+    if (fresh.length === 0) hits.delete(ip);
+    else if (fresh.length !== arr.length) hits.set(ip, fresh);
+  }
+}
+
 function rateLimit(req: Request, res: Response, next: () => void) {
   const ip = req.ip ?? req.socket.remoteAddress ?? "unknown";
   const now = Date.now();
@@ -22,6 +37,7 @@ function rateLimit(req: Request, res: Response, next: () => void) {
   }
   arr.push(now);
   hits.set(ip, arr);
+  sweep();
   next();
 }
 

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import type { Sentence, Token } from "../../../shared/schemas";
-import { getArabicSpeechStatus, speakArabic } from "../lib/speech";
+import { speakArabic } from "../lib/speech";
+import { useArabicSpeechStatus } from "../lib/useArabicSpeechStatus";
 import AiTutorButton from "./AiTutorButton";
 
 interface Props {
@@ -30,7 +31,7 @@ export default function TokenPanel({
     return () => window.removeEventListener("keydown", handler);
   }, [onClose]);
 
-  const speechStatus = getArabicSpeechStatus();
+  const speechStatus = useArabicSpeechStatus();
 
   return (
     <section

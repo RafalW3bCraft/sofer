@@ -155,4 +155,51 @@ describe("callTokenFactory", () => {
     expect(r.ok).toBe(false);
     if (!r.ok) expect(r.reason).toBe("schema_mismatch");
   });
+
+  it("truncates an over-long assistant response to 800 chars", async () => {
+    const huge = "X".repeat(2000);
+    mock = await startMockTokenFactory({
+      body: {
+        choices: [{ message: { role: "assistant", content: huge } }],
+      },
+    });
+    const r = await callTokenFactory(
+      {
+        apiKey: "test-key",
+        baseUrl: mock.baseUrl,
+        model: "mock",
+        timeoutMs: 2000,
+      },
+      {
+        context: "word",
+        arabic: "ٱلسَّلَامُ",
+        lessonId: "greetings-1",
+        requestId: crypto.randomUUID(),
+      }
+    );
+    expect(r.ok).toBe(true);
+    if (r.ok) {
+      expect(r.response.explanation.length).toBeLessThanOrEqual(800);
+    }
+  });
+
+  it("returns model_not_available on 404", async () => {
+    mock = await startMockTokenFactory({ status: 404 });
+    const r = await callTokenFactory(
+      {
+        apiKey: "test-key",
+        baseUrl: mock.baseUrl,
+        model: "missing-model",
+        timeoutMs: 2000,
+      },
+      {
+        context: "word",
+        arabic: "ٱلسَّلَامُ",
+        lessonId: "greetings-1",
+        requestId: crypto.randomUUID(),
+      }
+    );
+    expect(r.ok).toBe(false);
+    if (!r.ok) expect(r.reason).toBe("model_not_available");
+  });
 });

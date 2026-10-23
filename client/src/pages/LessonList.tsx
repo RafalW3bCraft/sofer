@@ -3,22 +3,34 @@ import { Link } from "react-router-dom";
 import lessonsData from "../content/lessons.json";
 import { LessonsFileSchema } from "../../../shared/schemas";
 import { readProgress } from "../lib/storage";
+import { lessonsCompletedCount, resumeSentenceIndex } from "../lib/progress";
 
 const lessonsFile = LessonsFileSchema.parse(lessonsData);
 
 export default function LessonList() {
-  const progress = useMemo(() => readProgress(), []);
-  const completed = progress.ok ? progress.value.lessons : {};
+  const initial = useMemo(() => readProgress(), []);
+  const progress = initial.ok ? initial.value : null;
+  const completed = progress ? progress.lessons : {};
   const firstUncompleted = useMemo(() => {
     for (const lesson of lessonsFile.lessons) {
-      if (!completed[lesson.id]) return lesson.id;
+      const ids = lesson.sentences.map((s) => s.id);
+      // A lesson is done only when every sentence has been answered.
+      const next = progress
+        ? resumeSentenceIndex(progress, lesson.id, ids)
+        : 0;
+      const isDone = next >= ids.length && ids.length > 0;
+      if (!isDone) return lesson.id;
     }
     return null;
-  }, [completed]);
+  }, [progress]);
+  const completedCount = progress ? lessonsCompletedCount(progress) : 0;
 
   return (
     <section className="page">
       <h1>Lessons</h1>
+      <p style={{ color: "var(--color-text-soft)" }}>
+        {completedCount} of {lessonsFile.lessons.length} lessons complete.
+      </p>
       {firstUncompleted && (
         <p>
           <Link to={`/lessons/${firstUncompleted}`} className="btn btn--primary">

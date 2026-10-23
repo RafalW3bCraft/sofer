@@ -3,8 +3,15 @@ import url from "node:url";
 import express, { type Request, type Response, type NextFunction } from "express";
 import { createExplainRouter } from "./routes/explain.js";
 import { logger } from "./lib/logger.js";
+import { loadDotenv } from "./lib/env.js";
+
+// Load .env (repo-root, server-root, cwd) BEFORE anything else reads env.
+// This keeps dev (`tsx watch`) and production (`node dist/index.js`)
+// boot paths identical. Existing process.env always wins.
+loadDotenv();
 
 const PORT = Number(process.env.PORT ?? 3001);
+const NODE_ENV = process.env.NODE_ENV ?? "development";
 
 export function createApp(): express.Express {
   const app = express();
@@ -23,8 +30,18 @@ export function createApp(): express.Express {
 
   app.use("/api/ai", createExplainRouter());
 
+  // Unknown /api/* routes return a structured JSON 404, not the SPA HTML.
+  app.use("/api", (_req: Request, res: Response) => {
+    res.status(404).json({
+      error: "not_found",
+      message: "Unknown API route.",
+    });
+  });
+
   // When running in production (`npm start`), serve the built client.
-  if (process.env.NODE_ENV === "production") {
+  // The `NODE_ENV=production` flag is set by the npm `start` script so this
+  // path activates reliably from a fresh shell without operator env setup.
+  if (NODE_ENV === "production") {
     const here = path.dirname(url.fileURLToPath(import.meta.url));
     const clientDist = path.resolve(here, "../../client/dist");
     app.use(express.static(clientDist));

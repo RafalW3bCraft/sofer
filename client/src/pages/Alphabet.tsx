@@ -1,12 +1,12 @@
-import { useMemo } from "react";
 import alphabetData from "../content/alphabet.json";
 import { AlphabetFileSchema } from "../../../shared/schemas";
-import { getArabicSpeechStatus, speakArabic } from "../lib/speech";
+import { useArabicSpeechStatus } from "../lib/useArabicSpeechStatus";
+import { speakArabic } from "../lib/speech";
 
 const alphabet = AlphabetFileSchema.parse(alphabetData);
 
 export default function Alphabet() {
-  const speechStatus = useMemo(() => getArabicSpeechStatus(), []);
+  const speechStatus = useArabicSpeechStatus();
   return (
     <section className="page">
       <h1>The Arabic alphabet</h1>
