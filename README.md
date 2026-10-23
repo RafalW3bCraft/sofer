@@ -53,6 +53,23 @@ Without a key, the endpoint returns a structured `503 provider_unavailable`
 and the UI shows the curated fallback explanation with an "AI tutor
 unavailable — using curated explanation" status pill.
 
+### Token Factory endpoints
+
+There are two documented Token Factory endpoints that speak the same
+OpenAI-compatible shape:
+
+- `https://api.tokenfactory.nebius.com/v1` — the Nebius-region endpoint
+  used by the verified live credential for this submission.
+- `https://developer.amd.com.cn/radeon/api/v1` — the AMD Radeon Cloud
+  endpoint documented at <https://amd-aim.github.io/radeon-cloud-docs/api/overview/>.
+  AMD documentation describes it as development / trial use.
+
+Pick the endpoint that matches your account. After pointing
+`TOKENFACTORY_BASE_URL` at the right host, run
+`npm run smoke:live` to confirm `GET /models` returns 200 and your
+chosen `TOKENFACTORY_MODEL` is in the list. See
+`docs/release/live-smoke.md` for the verified smoke output.
+
 See `devpost/spec.md > External Services and Dependencies > AMD Token Factory`
 for the exact request/response shape.
 

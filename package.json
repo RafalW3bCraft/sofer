@@ -20,6 +20,7 @@
     "test:e2e": "playwright test",
     "validate:lessons": "tsx scripts/validate-lessons.ts",
     "validate:alphabet": "tsx scripts/validate-alphabet.ts",
+    "smoke:live": "tsx scripts/live-tokenfactory-smoke.ts",
     "hygiene": "tsx scripts/hygiene.ts"
   },
   "devDependencies": {
