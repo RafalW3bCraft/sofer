@@ -1,7 +1,8 @@
 # sofer — all-in-one production image (Express server + built SPA).
 # Pinned Node 24 LTS (production-preferred runtime; 22+ also supported).
 # Build:  docker build -t sofer .
-# Run:    docker run --rm -p 3001:3001 -e TOKENFACTORY_API_KEY=... sofer
+# Run:    docker run --rm -p 3001:3001 --env-file .env sofer
+#         (or pass the provider API key via your platform's secret store)
 
 FROM node:24-alpine AS deps
 WORKDIR /app
