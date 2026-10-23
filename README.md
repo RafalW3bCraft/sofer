@@ -1,5 +1,7 @@
 # sofer — Learn your first Arabic sentences
 
+[![CI](https://github.com/RafalW3bCraft/sofer/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/RafalW3bCraft/sofer/actions/workflows/ci.yml)
+
 sofer is a calm, accessible web app that teaches **Modern Standard Arabic**
 to English-speaking complete beginners through short curated lessons and
 **tappable tokens on real sentences**. The optional "Explain with AI tutor"
