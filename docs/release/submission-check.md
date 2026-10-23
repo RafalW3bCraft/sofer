@@ -1,6 +1,6 @@
 # Devpost Submission Check
 
-Re-verified at: 2026-10-23 (commit 13fe742)
+Re-verified at: 2026-10-23 (commit 13fe742); updated 2026-10-23 ~06:00 UTC after commits `c4c2201`, `7dc424c`, `305a8d2` (provider defaults, CI, UX hint, security headers, self-hosted font). Live Nebius inference re-verified PASS same day (`docs/release/live-smoke.md` addendum). All gates re-run green: 58/58 Vitest, 30/30 Playwright (real Chromium on the owner machine), tsc, validators, build, hygiene, production smoke with strict CSP. **GitHub Actions CI added (`.github/workflows/ci.yml`) but its first real run happens only after the participant authorizes the push — badge/link withheld until then.**
 
 | Devpost rule | Status | Evidence |
 |--------------|--------|----------|

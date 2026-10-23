@@ -96,6 +96,21 @@ schema-validated explanation.
    "development/trial use" and may not be globally available. That is
    confirmed by Step 1 above.
 
+## Re-verification — 2026-10-23 ~05:57 UTC (commit 7dc424c era)
+
+Re-ran `npm run smoke:live` after the provider-default fix:
+
+- With the participant's `.env` defaults (which still pin the AMD China
+  endpoint and `DeepSeek-V4-Flash`): `GET /models -> 401
+  {"detail":"Invalid bearer token"}` — reconfirms the AMD endpoint rejects
+  the Nebius key. The committed code defaults no longer point there; the
+  participant should update their local `.env` (env vars win over defaults).
+- With `TOKENFACTORY_BASE_URL=https://api.tokenfactory.nebius.com/v1` and
+  `TOKENFACTORY_MODEL=Qwen/Qwen3-235B-A22B-Instruct-2507` (the new code
+  defaults): `GET /models -> 200`, **30 models** (catalog grew by one since
+  the first smoke), `POST /chat/completions -> 200`, schema-valid
+  explanation returned. **PASS.**
+
 ## What was NOT verified
 
 - **No production HTTPS URL was published.** Per the directive, deployment
