@@ -39,10 +39,10 @@ Frontend
 - `window.speechSynthesis` for pronunciation. No external audio assets.
 
 Backend
-- Node.js 20 LTS, Express 4, TypeScript.
+- Node.js 22 LTS or newer (24 LTS preferred for production), Express 4, TypeScript.
 - `tsx` for dev, `esbuild` for build (consistent with the OmniLanguageTutor pattern; sized down to two files).
 - Zod for request and response validation.
-- `node-fetch` not required — Node 20 has global `fetch`.
+- `node-fetch` not required — Node 18+ has global `fetch`.
 - No ORM. No database driver. No auth library.
 
 Testing
@@ -65,7 +65,7 @@ Anything unverified
 Runtime: browser (frontend) + local Node process (backend). No external hosting required for the POC.
 
 Environment requirements
-- Node.js 20 LTS or newer.
+- Node.js 22 LTS or newer (24 LTS preferred for production).
 - One optional environment variable: `TOKENFACTORY_API_KEY`. The application runs fully without it; the AI tutor endpoint serves the curated fallback.
 - Optional `TOKENFACTORY_BASE_URL` (defaults to the documented Token Factory base URL once verified in `4-spec`).
 - Optional `TOKENFACTORY_MODEL` (default placeholder; resolved against the provider\'s model list).

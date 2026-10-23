@@ -6,7 +6,7 @@
   "description": "sofer — a calm, accessible web app that teaches Modern Standard Arabic to complete beginners through tappable tokens on real sentences and an optional AI tutor.",
   "license": "MIT",
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=22.0.0"
   },
   "scripts": {
     "dev": "concurrently -k -n client,server -c green,blue \"npm:dev:client\" \"npm:dev:server\"",

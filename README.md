@@ -12,7 +12,10 @@ This repository was built for the Devpost **Build With AI: Basics** hackathon
 
 ## Quick start
 
-Requires **Node.js 20 LTS or newer** (developed against Node 20 / 26).
+Requires **Node.js 22 LTS or newer** (Node 24 LTS preferred for production
+deployments; developed and CI-verified against Node 22 / 24 / 26). Node 20
+reached end-of-life in 2026 and is no longer a supported runtime for this
+project.
 
 ```bash
 # 1. Install

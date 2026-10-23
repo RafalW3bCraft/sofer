@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: ["20", "22"]
+        node: ["22", "24"]
     steps:
       - uses: actions/checkout@v4
 
@@ -67,14 +67,14 @@ jobs:
           echo "production smoke OK"
 
   e2e:
-    name: e2e (playwright, node 20)
+    name: e2e (playwright, node 22)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
 
       - name: Install (root)
         run: npm ci
