@@ -39,5 +39,12 @@ API: `/api/me`, `/api/me/preferences`, `/api/me/progress`, `/api/me/attempts`,
 no DB. Deterministic merge on first login (no silent overwrite of local
 progress). Docker Compose for local Postgres. All endpoints Zod-validated,
 authorized, integration-tested incl. two-user denial and restart persistence.
-Status: **NOT VERIFIED / not started on main** — hackathon main must not be
-destabilized.
+Status (2026-10-24): **SERVER SLICE IMPLEMENTED + VERIFIED LOCALLY** on
+`feature/production-platform` — schema, migrations, Better Auth
+(email+password, Drizzle pg adapter), `/api/me/*` (preferences, attempts
+with idempotency, progress, tricky tokens, review queue, confirmed guest
+import, account deletion), public `/api/dictionary/lookup` with seeded v1
+lexicon, docker-compose Postgres, 9/9 ephemeral-DB integration tests green
+(76/76 vitest overall, 35/35 e2e, tsc/build/hygiene green). Client account
+UI, email verification, and production HTTPS deployment: NOT VERIFIED /
+deferred. Hackathon `main` is untouched and remains the submission build.
