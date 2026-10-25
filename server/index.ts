@@ -2,6 +2,9 @@ import path from "node:path";
 import url from "node:url";
 import express, { type Request, type Response, type NextFunction } from "express";
 import { createExplainRouter } from "./routes/explain.js";
+import { createMeRouter } from "./routes/me.js";
+import { createDictionaryRouter } from "./routes/dictionary.js";
+import { getAuth } from "./lib/auth.js";
 import { logger } from "./lib/logger.js";
 import { loadDotenv } from "./lib/env.js";
 
@@ -43,6 +46,49 @@ export function createApp(): express.Express {
   });
 
   app.use("/api/ai", createExplainRouter());
+
+  // Production-platform slice (active only when DATABASE_URL is set):
+  // Better Auth handler + authenticated /api/me/* + public dictionary.
+  const auth = getAuth();
+  if (auth) {
+    app.all("/api/auth/*", (req: Request, res: Response) => {
+      // Bridge Express <-> Fetch API handler. express.json() already parsed
+      // the body upstream, so forward the parsed object instead of trying to
+      // re-read the (already consumed) request stream.
+      const origin = `${req.protocol}://${req.get("host") ?? "127.0.0.1"}`;
+      const url = new URL(req.originalUrl, origin);
+      const headers = new Headers();
+      for (const [k, v] of Object.entries(req.headers)) {
+        if (typeof v === "string") headers.set(k, v);
+        else if (Array.isArray(v)) headers.set(k, v.join(", "));
+      }
+      headers.set("content-type", "application/json");
+      const body =
+        req.method === "GET" || req.method === "HEAD"
+          ? undefined
+          : JSON.stringify(req.body ?? {});
+      void (async () => {
+        try {
+          const authRes = await auth.handler(
+            new Request(url, { method: req.method, headers, body })
+          );
+          res.status(authRes.status);
+          authRes.headers.forEach((value: string, key: string) => {
+            res.setHeader(key, value);
+          });
+          const buf = Buffer.from(await authRes.arrayBuffer());
+          res.send(buf);
+        } catch (e) {
+          logger.error("auth handler error", e instanceof Error ? e.message : String(e));
+          if (!res.headersSent) {
+            res.status(500).json({ error: "internal_error", message: "Auth failed." });
+          }
+        }
+      })();
+    });
+    app.use("/api/me", createMeRouter());
+    app.use("/api/dictionary", createDictionaryRouter());
+  }
 
   // Unknown /api/* routes return a structured JSON 404, not the SPA HTML.
   app.use("/api", (_req: Request, res: Response) => {
