@@ -1,57 +1,48 @@
-import {
-  ExplainRequestSchema,
-  ExplainResponseSchema,
-  type ExplainRequest,
-  type ExplainResponse,
-} from "../../../shared/schemas";
+import { getFirebaseConfigStatus } from "./firebase/config";
+import { createFirebaseTutorProvider } from "./ai/firebaseProvider";
+import { createHybridTutorService, type DeviceModelStatus } from "./ai/hybridService";
+import type { TutorRequest, TutorResponse } from "../../../shared/schemas";
+
+const firebaseProvider = createFirebaseTutorProvider();
+const tutorService = firebaseProvider
+  ? createHybridTutorService(firebaseProvider)
+  : null;
 
 export type AiExplainState =
   | { kind: "idle" }
   | { kind: "loading" }
-  | { kind: "ok"; response: ExplainResponse }
-  | { kind: "fallback"; reason: string; message: string };
+  | { kind: "ok"; response: TutorResponse }
+  | { kind: "fallback"; reason: string; message: string }
+  | { kind: "cancelled" };
+
+export function getHybridAiSetupStatus() {
+  return getFirebaseConfigStatus();
+}
+
+export async function getDeviceModelStatus(): Promise<DeviceModelStatus> {
+  if (!tutorService) return { kind: "unavailable" };
+  return tutorService.getDeviceAvailability();
+}
+
+export async function prepareDeviceModel(
+  onProgress: (progress: number) => void = () => undefined,
+): Promise<DeviceModelStatus> {
+  if (!tutorService) return { kind: "unavailable" };
+  return tutorService.prepareDeviceModel(onProgress);
+}
 
 export async function explainWithAi(
-  payload: ExplainRequest
+  payload: TutorRequest,
+  signal?: AbortSignal,
 ): Promise<AiExplainState> {
-  const parsed = ExplainRequestSchema.safeParse(payload);
-  if (!parsed.success) {
+  if (!tutorService) {
+    const status = getFirebaseConfigStatus();
+    const reason = status.configured ? "app_check_unavailable" : "firebase_not_configured";
     return {
       kind: "fallback",
-      reason: "invalid_request",
-      message: "Invalid request shape.",
+      reason,
+      message: "Firebase AI is not configured for this environment. The curated lesson content is still available.",
     };
   }
-  try {
-    const res = await fetch("/api/ai/explain", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(parsed.data),
-    });
-    if (!res.ok) {
-      const body = await res.json().catch(() => null);
-      const reason = (body && body.reason) || "provider_unavailable";
-      const message = (body && body.message) || `Server returned ${res.status}.`;
-      return { kind: "fallback", reason, message };
-    }
-    const body: unknown = await res.json();
-    const ok = ExplainResponseSchema.safeParse(body);
-    if (!ok.success) {
-      return {
-        kind: "fallback",
-        reason: "schema_mismatch",
-        message: "AI response did not match the expected schema.",
-      };
-    }
-    return { kind: "ok", response: ok.data };
-  } catch (err) {
-    return {
-      kind: "fallback",
-      reason: "provider_unavailable",
-      message:
-        err instanceof Error
-          ? `Could not reach the AI tutor: ${err.message}`
-          : "Could not reach the AI tutor.",
-    };
-  }
+  return tutorService.explain(payload, signal);
 }

@@ -1,0 +1,25 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedInAs(userId) {
+      return request.auth != null && request.auth.uid == userId;
+    }
+
+    match /users/{userId}/state/{stateId} {
+      allow get, list: if signedInAs(userId) && stateId == 'current';
+      allow create, update: if signedInAs(userId)
+        && stateId == 'current'
+        && request.resource.data.keys().hasOnly(['schemaVersion', 'progress', 'trickyTokens', 'updatedAt'])
+        && request.resource.data.schemaVersion == 1
+        && request.resource.data.progress is map
+        && request.resource.data.trickyTokens is map
+        && request.resource.data.updatedAt is string
+        && request.resource.data.updatedAt.size() <= 40;
+      allow delete: if signedInAs(userId) && stateId == 'current';
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

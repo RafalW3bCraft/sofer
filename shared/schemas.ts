@@ -4,7 +4,24 @@ import { z } from "zod";
 // Lesson content schema (static, build-time, validated against lessons.json).
 // ---------------------------------------------------------------------------
 
-export const TopicSchema = z.enum(["greetings", "numbers", "directions"]);
+export const TopicSchema = z.enum([
+  "greetings",
+  "introductions",
+  "family",
+  "numbers",
+  "time",
+  "food",
+  "home",
+  "daily_activities",
+  "directions",
+  "shopping",
+  "school_work",
+  "travel",
+  "weather",
+  "health",
+  "hobbies",
+  "revision",
+]);
 export type Topic = z.infer<typeof TopicSchema>;
 
 export const PartOfSpeechSchema = z.enum([
@@ -55,14 +72,39 @@ export const LessonSchema = z.object({
   topic: TopicSchema,
   title: z.string().min(1),
   objective: z.string().min(1),
-  difficulty: z.literal("A1"),
-  sentences: z.array(SentenceSchema).min(2).max(3),
+  difficulty: z.enum(["pre_a1", "A1"]),
+  reviewStatus: z.enum(["trusted", "draft"]).default("trusted"),
+  prerequisites: z.array(z.string().min(1)).default([]),
+  vocabularyRefs: z.array(z.string().min(1)).default([]),
+  grammarRefs: z.array(z.string().min(1)).default([]),
+  sentences: z.array(SentenceSchema).min(2).max(8),
 });
 export type Lesson = z.infer<typeof LessonSchema>;
 
+export const VocabularyEntrySchema = z.object({
+  id: z.string().min(1),
+  arabic: z.string().min(1),
+  transliteration: z.string().min(1),
+  meaning: z.string().min(1),
+  partOfSpeech: PartOfSpeechSchema,
+  reviewStatus: z.enum(["trusted", "draft"]).default("trusted"),
+});
+export type VocabularyEntry = z.infer<typeof VocabularyEntrySchema>;
+
+export const GrammarEntrySchema = z.object({
+  id: z.string().min(1),
+  title: z.string().min(1),
+  explanation: z.string().min(1),
+  reviewStatus: z.enum(["trusted", "draft"]).default("trusted"),
+});
+export type GrammarEntry = z.infer<typeof GrammarEntrySchema>;
+
 export const LessonsFileSchema = z.object({
-  version: z.literal(1),
+  version: z.number().int().positive(),
+  packId: z.string().min(1).default("sofer-a1"),
   lessons: z.array(LessonSchema).min(1),
+  vocabulary: z.array(VocabularyEntrySchema).default([]),
+  grammar: z.array(GrammarEntrySchema).default([]),
 });
 export type LessonsFile = z.infer<typeof LessonsFileSchema>;
 
@@ -141,9 +183,34 @@ export type ProgressV2 = z.infer<typeof ProgressV2Schema>;
 
 export const TrickyTokensV1Schema = z.object({
   schemaVersion: z.literal(1),
-  tricky: z.record(z.string(), z.object({ markedAt: z.string().min(1) })),
+  // removedAt is an optional tombstone so cross-device sync can preserve an
+  // explicit unmark without reviving it from an older replica.
+  tricky: z.record(z.string(), z.object({ markedAt: z.string().min(1), removedAt: z.string().min(1).optional() })),
 });
 export type TrickyTokensV1 = z.infer<typeof TrickyTokensV1Schema>;
+
+export const LearnerSyncStateSchema = z.object({
+  schemaVersion: z.literal(1),
+  progress: ProgressV2Schema,
+  trickyTokens: TrickyTokensV1Schema,
+  updatedAt: z.string().datetime(),
+});
+export type LearnerSyncState = z.infer<typeof LearnerSyncStateSchema>;
+
+export const ReviewRecordSchema = z.object({
+  tokenId: z.string().min(1).max(250),
+  lastAttemptAt: z.string().datetime(),
+  correct: z.boolean(),
+  dueAt: z.string().datetime(),
+  repetitions: z.number().int().nonnegative(),
+  difficulty: z.enum(["learning", "steady"]),
+});
+export const ReviewStoreSchema = z.object({
+  schemaVersion: z.literal(1),
+  records: z.record(z.string(), ReviewRecordSchema),
+});
+export type ReviewRecord = z.infer<typeof ReviewRecordSchema>;
+export type ReviewStore = z.infer<typeof ReviewStoreSchema>;
 
 // ---------------------------------------------------------------------------
 // AI tutor request/response schemas.
@@ -188,6 +255,88 @@ export const ExplainErrorSchema = z.object({
   message: z.string().min(1),
 });
 export type ExplainError = z.infer<typeof ExplainErrorSchema>;
+
+// ---------------------------------------------------------------------------
+// Firebase AI Logic hybrid tutor contracts.
+// ---------------------------------------------------------------------------
+
+export const InferenceModeSchema = z.enum([
+  "prefer_on_device",
+  "only_on_device",
+  "prefer_in_cloud",
+  "only_in_cloud",
+]);
+export type InferenceModeValue = z.infer<typeof InferenceModeSchema>;
+
+export const InferenceSourceSchema = z.enum([
+  "on_device",
+  "in_cloud",
+  "unknown",
+]);
+export type InferenceSourceValue = z.infer<typeof InferenceSourceSchema>;
+
+export const TutorTaskSchema = z.enum([
+  "explain_word",
+  "explain_sentence",
+  "simplify_grammar",
+  "contextual_example",
+  "explain_wrong_answer",
+  "practice_suggestion",
+]);
+export type TutorTask = z.infer<typeof TutorTaskSchema>;
+
+export const TutorContextPacketSchema = z.object({
+  lessonId: z.string().min(1).max(80),
+  lessonTitle: z.string().min(1).max(160).optional(),
+  learningObjective: z.string().min(1).max(500).optional(),
+  sentenceId: z.string().min(1).max(80).optional(),
+  sentenceArabic: z.string().max(500).optional(),
+  sentenceEnglish: z.string().max(500).optional(),
+  selectedArabic: z.string().max(120).optional(),
+  selectedMeaning: z.string().max(300).optional(),
+  transliteration: z.string().max(240).optional(),
+  grammarNote: z.string().max(500).optional(),
+  nearbyExamples: z.array(z.object({
+    arabic: z.string().min(1).max(300),
+    english: z.string().min(1).max(300),
+  })).max(3).default([]),
+  learnerLevel: z.enum(["beginner", "early_a1"]).default("beginner"),
+  recentMistakeConcepts: z.array(z.string().min(1).max(120)).max(3).default([]),
+  dueReviewItems: z.array(z.string().min(1).max(120)).max(3).default([]),
+  submittedQuestion: z.string().max(500).optional(),
+  quizQuestion: z.string().max(300).optional(),
+  quizOptions: z.array(z.string().max(200)).max(4).optional(),
+  correctAnswer: z.string().max(200).optional(),
+  submittedAnswer: z.string().max(200).optional(),
+});
+export type TutorContextPacket = z.infer<typeof TutorContextPacketSchema>;
+
+export const TutorRequestSchema = z.object({
+  task: TutorTaskSchema,
+  inferenceMode: InferenceModeSchema.default("prefer_on_device"),
+  context: TutorContextPacketSchema,
+  requestId: z.string().uuid(),
+});
+export type TutorRequest = z.infer<typeof TutorRequestSchema>;
+
+export const TutorContentSchema = z.object({
+  explanation: z.string().min(1).max(800),
+  grammarNote: z.string().max(500).optional(),
+  exampleArabic: z.string().max(300).optional(),
+  exampleEnglish: z.string().max(300).optional(),
+  practiceQuestion: z.string().max(300).optional(),
+  practiceAnswer: z.string().max(300).optional(),
+  confidenceOrLimitations: z.string().max(300).optional(),
+  curriculumReferences: z.array(z.string().min(1).max(100)).max(5).default([]),
+});
+export type TutorContent = z.infer<typeof TutorContentSchema>;
+
+export const TutorResponseSchema = TutorContentSchema.extend({
+  inferenceSource: InferenceSourceSchema,
+  model: z.string().min(1).max(120),
+  generatedAt: z.string().datetime(),
+});
+export type TutorResponse = z.infer<typeof TutorResponseSchema>;
 
 // ---------------------------------------------------------------------------
 // Helpers used by both client and server.

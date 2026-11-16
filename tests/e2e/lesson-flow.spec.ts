@@ -62,7 +62,7 @@ test.describe("learner flow", () => {
     // The lesson should NOT yet be marked done (we answered only one of three).
     await page.goto("/lessons");
     await expect(
-      page.getByText(/0 of 3 lessons complete/i)
+      page.getByText(/0 of 3 reviewed lessons complete/i)
     ).toBeVisible();
     await expect(page.getByText(/^done$/i)).toHaveCount(0);
   });
@@ -95,13 +95,13 @@ test.describe("learner flow", () => {
       /Finish lesson/i
     );
 
-    // Lesson list should now report 1/3 done and show "✓ done" next to the lesson.
+    // Lesson list should now report one of three reviewed lessons done.
     await page.goto("/lessons");
     await expect(
       page.getByText(/Greetings and basic courtesies/i).first()
     ).toBeVisible();
     await expect(page.getByText(/✓ done/i).first()).toBeVisible();
-    await expect(page.getByText(/1 of 3 lessons complete/i)).toBeVisible();
+    await expect(page.getByText(/1 of 3 reviewed lessons complete/i)).toBeVisible();
   });
 
   test("re-submitting the same answer does not inflate the totals", async ({ page }) => {
@@ -134,6 +134,23 @@ test.describe("learner flow", () => {
     });
     await expect(lessonsStat.locator(".progress-stat__value")).toHaveText("0");
   });
+});
+
+test("practice supports vocabulary recall and sentence reconstruction", async ({ page }) => {
+  await page.goto("/practice");
+  await expect(page.getByRole("heading", { name: "Practice" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /reviewed meaning/i })).toHaveCount(0);
+  await expect(page.locator(".practice-arabic").first()).toBeVisible();
+  await page.getByRole("button", { name: "Sentence reconstruction" }).click();
+  await expect(page.getByRole("heading", { name: /rebuild the reviewed sentence/i })).toBeVisible();
+  await expect(page.getByRole("button", { name: /check sentence/i })).toBeDisabled();
+});
+
+test("settings exposes learner preferences and guest-first account information", async ({ page }) => {
+  await page.goto("/settings");
+  await expect(page.getByRole("heading", { name: "Settings" })).toBeVisible();
+  await expect(page.getByLabel(/show transliteration/i)).toBeVisible();
+  await expect(page.getByText(/Learn as a guest without an account/i)).toBeVisible();
 });
 
 test("alphabet page lists 28 letters and 3 diacritics", async ({ page }) => {

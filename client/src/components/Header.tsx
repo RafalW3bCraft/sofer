@@ -12,6 +12,9 @@ export default function Header() {
           <NavLink to="/lessons">Learn</NavLink>
           <NavLink to="/alphabet">Alphabet</NavLink>
           <NavLink to="/progress">Progress</NavLink>
+          <NavLink to="/practice">Practice</NavLink>
+          <NavLink to="/review">Review</NavLink>
+          <NavLink to="/settings">Settings</NavLink>
         </nav>
         <details className="site-menu">
           <summary aria-label="Open menu">Menu</summary>
@@ -19,6 +22,9 @@ export default function Header() {
             <li><NavLink to="/lessons">Learn</NavLink></li>
             <li><NavLink to="/alphabet">Alphabet</NavLink></li>
             <li><NavLink to="/progress">Progress</NavLink></li>
+            <li><NavLink to="/practice">Practice</NavLink></li>
+            <li><NavLink to="/review">Review</NavLink></li>
+            <li><NavLink to="/settings">Settings</NavLink></li>
           </ul>
         </details>
       </div>

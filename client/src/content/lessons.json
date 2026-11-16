@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "lessons": [
     {
       "id": "greetings-1",
@@ -357,6 +357,1963 @@
           }
         }
       ]
+    },
+    {
+      "id": "introductions-1",
+      "topic": "introductions",
+      "title": "Introducing yourself",
+      "objective": "Use simple words to say your name, role, and where you are from",
+      "difficulty": "A1",
+      "reviewStatus": "draft",
+      "prerequisites": [
+        "greetings-1"
+      ],
+      "sentences": [
+        {
+          "id": "introductions-1-s1",
+          "arabic": "اسمي أحمد",
+          "english": "اسمي أحمد",
+          "transliteration": "ismī Aḥmad",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 4,
+              "arabic": "اسمي",
+              "transliteration": "ismī",
+              "meaning": "my name",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 5,
+              "end": 9,
+              "arabic": "أحمد",
+              "transliteration": "Aḥmad",
+              "meaning": "Ahmad",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches اسمي?",
+            "options": [
+              "my name",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for اسمي: my name. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for اسمي: my name. This draft has not been reviewed.",
+              "Candidate gloss for اسمي: my name. This draft has not been reviewed.",
+              "Candidate gloss for اسمي: my name. This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "introductions-1-s2",
+          "arabic": "أنا طالبة",
+          "english": "أنا طالبة",
+          "transliteration": "anā ṭāliba",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 3,
+              "arabic": "أنا",
+              "transliteration": "anā",
+              "meaning": "I",
+              "partOfSpeech": "pron",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 4,
+              "end": 9,
+              "arabic": "طالبة",
+              "transliteration": "ṭāliba",
+              "meaning": "female student",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches أنا?",
+            "options": [
+              "I",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for أنا: I. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for أنا: I. This draft has not been reviewed.",
+              "Candidate gloss for أنا: I. This draft has not been reviewed.",
+              "Candidate gloss for أنا: I. This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "introductions-1-s3",
+          "arabic": "أنا من مصر",
+          "english": "أنا من مصر",
+          "transliteration": "anā min Miṣr",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 3,
+              "arabic": "أنا",
+              "transliteration": "anā",
+              "meaning": "I",
+              "partOfSpeech": "pron",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 4,
+              "end": 6,
+              "arabic": "من",
+              "transliteration": "min",
+              "meaning": "from",
+              "partOfSpeech": "prep",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 7,
+              "end": 10,
+              "arabic": "مصر",
+              "transliteration": "Miṣr",
+              "meaning": "Egypt",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches أنا?",
+            "options": [
+              "I",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for أنا: I. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for أنا: I. This draft has not been reviewed.",
+              "Candidate gloss for أنا: I. This draft has not been reviewed.",
+              "Candidate gloss for أنا: I. This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "introductions-1-s4",
+          "arabic": "ما اسمك",
+          "english": "ما اسمك",
+          "transliteration": "mā ismuka",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 2,
+              "arabic": "ما",
+              "transliteration": "mā",
+              "meaning": "what",
+              "partOfSpeech": "particle",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 3,
+              "end": 7,
+              "arabic": "اسمك",
+              "transliteration": "ismuka",
+              "meaning": "your name (to a male)",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches ما?",
+            "options": [
+              "what",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for ما: what. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for ما: what. This draft has not been reviewed.",
+              "Candidate gloss for ما: what. This draft has not been reviewed.",
+              "Candidate gloss for ما: what. This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "introductions-1-s5",
+          "arabic": "اسمي فاطمة",
+          "english": "My name is Fatima",
+          "transliteration": "ismī Fāṭima",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 4,
+              "arabic": "اسمي",
+              "transliteration": "ismī",
+              "meaning": "my name",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 5,
+              "end": 10,
+              "arabic": "فاطمة",
+              "transliteration": "Fāṭima",
+              "meaning": "Fatima",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches اسمي?",
+            "options": [
+              "my name",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for اسمي: my name. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for اسمي: my name. This draft has not been reviewed.",
+              "Candidate gloss for اسمي: my name. This draft has not been reviewed.",
+              "Candidate gloss for اسمي: my name. This draft has not been reviewed."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "family-1",
+      "topic": "family",
+      "title": "Family and relationships",
+      "objective": "Name close family members and describe a family simply",
+      "difficulty": "A1",
+      "reviewStatus": "draft",
+      "prerequisites": [
+        "greetings-1"
+      ],
+      "sentences": [
+        {
+          "id": "family-1-s1",
+          "arabic": "هذه أمي",
+          "english": "هذه أمي",
+          "transliteration": "hādhihi ummī",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 3,
+              "arabic": "هذه",
+              "transliteration": "hādhihi",
+              "meaning": "this (feminine)",
+              "partOfSpeech": "other",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 4,
+              "end": 7,
+              "arabic": "أمي",
+              "transliteration": "ummī",
+              "meaning": "my mother",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches هذه?",
+            "options": [
+              "this (feminine)",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for هذه: this (feminine). This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for هذه: this (feminine). This draft has not been reviewed.",
+              "Candidate gloss for هذه: this (feminine). This draft has not been reviewed.",
+              "Candidate gloss for هذه: this (feminine). This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "family-1-s2",
+          "arabic": "هذا أبي",
+          "english": "هذا أبي",
+          "transliteration": "hādhā abī",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 3,
+              "arabic": "هذا",
+              "transliteration": "hādhā",
+              "meaning": "this (masculine)",
+              "partOfSpeech": "other",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 4,
+              "end": 7,
+              "arabic": "أبي",
+              "transliteration": "abī",
+              "meaning": "my father",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches هذا?",
+            "options": [
+              "this (masculine)",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for هذا: this (masculine). This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for هذا: this (masculine). This draft has not been reviewed.",
+              "Candidate gloss for هذا: this (masculine). This draft has not been reviewed.",
+              "Candidate gloss for هذا: this (masculine). This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "family-1-s3",
+          "arabic": "لي أخ واحد",
+          "english": "لي أخ واحد",
+          "transliteration": "lī akh wāḥid",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 2,
+              "arabic": "لي",
+              "transliteration": "lī",
+              "meaning": "I have / for me",
+              "partOfSpeech": "prep",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 3,
+              "end": 5,
+              "arabic": "أخ",
+              "transliteration": "akh",
+              "meaning": "brother",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 6,
+              "end": 10,
+              "arabic": "واحد",
+              "transliteration": "wāḥid",
+              "meaning": "one",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches لي?",
+            "options": [
+              "I have / for me",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for لي: I have / for me. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for لي: I have / for me. This draft has not been reviewed.",
+              "Candidate gloss for لي: I have / for me. This draft has not been reviewed.",
+              "Candidate gloss for لي: I have / for me. This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "family-1-s4",
+          "arabic": "أسرتي صغيرة",
+          "english": "أسرتي صغيرة",
+          "transliteration": "usratī ṣaghīra",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 5,
+              "arabic": "أسرتي",
+              "transliteration": "usratī",
+              "meaning": "my family",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 6,
+              "end": 11,
+              "arabic": "صغيرة",
+              "transliteration": "ṣaghīra",
+              "meaning": "small (feminine)",
+              "partOfSpeech": "adj",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches أسرتي?",
+            "options": [
+              "my family",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for أسرتي: my family. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for أسرتي: my family. This draft has not been reviewed.",
+              "Candidate gloss for أسرتي: my family. This draft has not been reviewed.",
+              "Candidate gloss for أسرتي: my family. This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "family-1-s5",
+          "arabic": "لي أخت",
+          "english": "I have a sister",
+          "transliteration": "lī ukht",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 2,
+              "arabic": "لي",
+              "transliteration": "lī",
+              "meaning": "I have / for me",
+              "partOfSpeech": "prep",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 3,
+              "end": 6,
+              "arabic": "أخت",
+              "transliteration": "ukht",
+              "meaning": "sister",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches لي?",
+            "options": [
+              "I have / for me",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for لي: I have / for me. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for لي: I have / for me. This draft has not been reviewed.",
+              "Candidate gloss for لي: I have / for me. This draft has not been reviewed.",
+              "Candidate gloss for لي: I have / for me. This draft has not been reviewed."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "time-1",
+      "topic": "time",
+      "title": "Time and daily schedule",
+      "objective": "Understand simple time words and routine statements",
+      "difficulty": "A1",
+      "reviewStatus": "draft",
+      "prerequisites": [
+        "greetings-1"
+      ],
+      "sentences": [
+        {
+          "id": "time-1-s1",
+          "arabic": "اليوم الاثنين",
+          "english": "اليوم الاثنين",
+          "transliteration": "al-yawm al-ithnayn",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 5,
+              "arabic": "اليوم",
+              "transliteration": "al-yawm",
+              "meaning": "today",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 6,
+              "end": 13,
+              "arabic": "الاثنين",
+              "transliteration": "al-ithnayn",
+              "meaning": "Monday",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches اليوم?",
+            "options": [
+              "today",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for اليوم: today. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for اليوم: today. This draft has not been reviewed.",
+              "Candidate gloss for اليوم: today. This draft has not been reviewed.",
+              "Candidate gloss for اليوم: today. This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "time-1-s2",
+          "arabic": "الساعة الثالثة الآن",
+          "english": "الساعة الثالثة الآن",
+          "transliteration": "as-sāʿa ath-thālitha al-ān",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 6,
+              "arabic": "الساعة",
+              "transliteration": "as-sāʿa",
+              "meaning": "the hour / clock",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 7,
+              "end": 14,
+              "arabic": "الثالثة",
+              "transliteration": "ath-thālitha",
+              "meaning": "the third (feminine)",
+              "partOfSpeech": "adj",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 15,
+              "end": 19,
+              "arabic": "الآن",
+              "transliteration": "al-ān",
+              "meaning": "now",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches الساعة?",
+            "options": [
+              "the hour / clock",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for الساعة: the hour / clock. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for الساعة: the hour / clock. This draft has not been reviewed.",
+              "Candidate gloss for الساعة: the hour / clock. This draft has not been reviewed.",
+              "Candidate gloss for الساعة: the hour / clock. This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "time-1-s3",
+          "arabic": "أعمل صباحا",
+          "english": "أعمل صباحا",
+          "transliteration": "aʿmal ṣabāḥan",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 4,
+              "arabic": "أعمل",
+              "transliteration": "aʿmal",
+              "meaning": "I work",
+              "partOfSpeech": "verb",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 5,
+              "end": 10,
+              "arabic": "صباحا",
+              "transliteration": "ṣabāḥan",
+              "meaning": "in the morning",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches أعمل?",
+            "options": [
+              "I work",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for أعمل: I work. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for أعمل: I work. This draft has not been reviewed.",
+              "Candidate gloss for أعمل: I work. This draft has not been reviewed.",
+              "Candidate gloss for أعمل: I work. This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "time-1-s4",
+          "arabic": "أدرس مساء",
+          "english": "أدرس مساء",
+          "transliteration": "adrus masāʾ",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 4,
+              "arabic": "أدرس",
+              "transliteration": "adrus",
+              "meaning": "I study",
+              "partOfSpeech": "verb",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 5,
+              "end": 9,
+              "arabic": "مساء",
+              "transliteration": "masāʾ",
+              "meaning": "in the evening",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches أدرس?",
+            "options": [
+              "I study",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for أدرس: I study. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for أدرس: I study. This draft has not been reviewed.",
+              "Candidate gloss for أدرس: I study. This draft has not been reviewed.",
+              "Candidate gloss for أدرس: I study. This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "time-1-s5",
+          "arabic": "اليوم الثلاثاء",
+          "english": "Today is Tuesday",
+          "transliteration": "al-yawm ath-thulāthāʾ",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 5,
+              "arabic": "اليوم",
+              "transliteration": "al-yawm",
+              "meaning": "today",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 6,
+              "end": 14,
+              "arabic": "الثلاثاء",
+              "transliteration": "ath-thulāthāʾ",
+              "meaning": "Tuesday",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches اليوم?",
+            "options": [
+              "today",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for اليوم: today. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for اليوم: today. This draft has not been reviewed.",
+              "Candidate gloss for اليوم: today. This draft has not been reviewed.",
+              "Candidate gloss for اليوم: today. This draft has not been reviewed."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "food-1",
+      "topic": "food",
+      "title": "Food and drinks",
+      "objective": "Recognize everyday food and polite requests",
+      "difficulty": "A1",
+      "reviewStatus": "draft",
+      "prerequisites": [
+        "greetings-1"
+      ],
+      "sentences": [
+        {
+          "id": "food-1-s1",
+          "arabic": "أريد ماء من فضلك",
+          "english": "أريد ماء من فضلك",
+          "transliteration": "urīd māʾ min faḍlika",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 4,
+              "arabic": "أريد",
+              "transliteration": "urīd",
+              "meaning": "I want",
+              "partOfSpeech": "verb",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 5,
+              "end": 8,
+              "arabic": "ماء",
+              "transliteration": "māʾ",
+              "meaning": "water",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 9,
+              "end": 11,
+              "arabic": "من",
+              "transliteration": "min",
+              "meaning": "from / as part of please",
+              "partOfSpeech": "prep",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 12,
+              "end": 16,
+              "arabic": "فضلك",
+              "transliteration": "faḍlika",
+              "meaning": "your kindness (in please)",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches أريد?",
+            "options": [
+              "I want",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for أريد: I want. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for أريد: I want. This draft has not been reviewed.",
+              "Candidate gloss for أريد: I want. This draft has not been reviewed.",
+              "Candidate gloss for أريد: I want. This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "food-1-s2",
+          "arabic": "أحب الخبز",
+          "english": "أحب الخبز",
+          "transliteration": "uḥibb al-khubz",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 3,
+              "arabic": "أحب",
+              "transliteration": "uḥibb",
+              "meaning": "I like",
+              "partOfSpeech": "verb",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 4,
+              "end": 9,
+              "arabic": "الخبز",
+              "transliteration": "al-khubz",
+              "meaning": "the bread",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches أحب?",
+            "options": [
+              "I like",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for أحب: I like. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for أحب: I like. This draft has not been reviewed.",
+              "Candidate gloss for أحب: I like. This draft has not been reviewed.",
+              "Candidate gloss for أحب: I like. This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "food-1-s3",
+          "arabic": "التفاحة حمراء",
+          "english": "التفاحة حمراء",
+          "transliteration": "at-tuffāḥa ḥamrāʾ",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 7,
+              "arabic": "التفاحة",
+              "transliteration": "at-tuffāḥa",
+              "meaning": "the apple",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 8,
+              "end": 13,
+              "arabic": "حمراء",
+              "transliteration": "ḥamrāʾ",
+              "meaning": "red (feminine)",
+              "partOfSpeech": "adj",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches التفاحة?",
+            "options": [
+              "the apple",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for التفاحة: the apple. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for التفاحة: the apple. This draft has not been reviewed.",
+              "Candidate gloss for التفاحة: the apple. This draft has not been reviewed.",
+              "Candidate gloss for التفاحة: the apple. This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "food-1-s4",
+          "arabic": "القهوة ساخنة",
+          "english": "القهوة ساخنة",
+          "transliteration": "al-qahwa sākhina",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 6,
+              "arabic": "القهوة",
+              "transliteration": "al-qahwa",
+              "meaning": "the coffee",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 7,
+              "end": 12,
+              "arabic": "ساخنة",
+              "transliteration": "sākhina",
+              "meaning": "hot (feminine)",
+              "partOfSpeech": "adj",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches القهوة?",
+            "options": [
+              "the coffee",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for القهوة: the coffee. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for القهوة: the coffee. This draft has not been reviewed.",
+              "Candidate gloss for القهوة: the coffee. This draft has not been reviewed.",
+              "Candidate gloss for القهوة: the coffee. This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "food-1-s5",
+          "arabic": "أشرب ماء",
+          "english": "I drink water",
+          "transliteration": "ashrab māʾ",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 4,
+              "arabic": "أشرب",
+              "transliteration": "ashrab",
+              "meaning": "I drink",
+              "partOfSpeech": "verb",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 5,
+              "end": 8,
+              "arabic": "ماء",
+              "transliteration": "māʾ",
+              "meaning": "water",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches أشرب?",
+            "options": [
+              "I drink",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for أشرب: I drink. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for أشرب: I drink. This draft has not been reviewed.",
+              "Candidate gloss for أشرب: I drink. This draft has not been reviewed.",
+              "Candidate gloss for أشرب: I drink. This draft has not been reviewed."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "home-1",
+      "topic": "home",
+      "title": "Home and everyday objects",
+      "objective": "Describe familiar rooms and household objects",
+      "difficulty": "A1",
+      "reviewStatus": "draft",
+      "prerequisites": [
+        "greetings-1"
+      ],
+      "sentences": [
+        {
+          "id": "home-1-s1",
+          "arabic": "هذا بيتنا",
+          "english": "هذا بيتنا",
+          "transliteration": "hādhā baytunā",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 3,
+              "arabic": "هذا",
+              "transliteration": "hādhā",
+              "meaning": "this (masculine)",
+              "partOfSpeech": "other",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 4,
+              "end": 9,
+              "arabic": "بيتنا",
+              "transliteration": "baytunā",
+              "meaning": "our house",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches هذا?",
+            "options": [
+              "this (masculine)",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for هذا: this (masculine). This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for هذا: this (masculine). This draft has not been reviewed.",
+              "Candidate gloss for هذا: this (masculine). This draft has not been reviewed.",
+              "Candidate gloss for هذا: this (masculine). This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "home-1-s2",
+          "arabic": "الباب مفتوح",
+          "english": "الباب مفتوح",
+          "transliteration": "al-bāb maftūḥ",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 5,
+              "arabic": "الباب",
+              "transliteration": "al-bāb",
+              "meaning": "the door",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 6,
+              "end": 11,
+              "arabic": "مفتوح",
+              "transliteration": "maftūḥ",
+              "meaning": "open",
+              "partOfSpeech": "adj",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches الباب?",
+            "options": [
+              "the door",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for الباب: the door. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for الباب: the door. This draft has not been reviewed.",
+              "Candidate gloss for الباب: the door. This draft has not been reviewed.",
+              "Candidate gloss for الباب: the door. This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "home-1-s3",
+          "arabic": "الكتاب على الطاولة",
+          "english": "الكتاب على الطاولة",
+          "transliteration": "al-kitāb ʿalā aṭ-ṭāwila",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 6,
+              "arabic": "الكتاب",
+              "transliteration": "al-kitāb",
+              "meaning": "the book",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 7,
+              "end": 10,
+              "arabic": "على",
+              "transliteration": "ʿalā",
+              "meaning": "on",
+              "partOfSpeech": "prep",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 11,
+              "end": 18,
+              "arabic": "الطاولة",
+              "transliteration": "aṭ-ṭāwila",
+              "meaning": "the table",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches الكتاب?",
+            "options": [
+              "the book",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for الكتاب: the book. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for الكتاب: the book. This draft has not been reviewed.",
+              "Candidate gloss for الكتاب: the book. This draft has not been reviewed.",
+              "Candidate gloss for الكتاب: the book. This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "home-1-s4",
+          "arabic": "غرفتي كبيرة",
+          "english": "غرفتي كبيرة",
+          "transliteration": "ghurfatī kabīra",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 5,
+              "arabic": "غرفتي",
+              "transliteration": "ghurfatī",
+              "meaning": "my room",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 6,
+              "end": 11,
+              "arabic": "كبيرة",
+              "transliteration": "kabīra",
+              "meaning": "big (feminine)",
+              "partOfSpeech": "adj",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches غرفتي?",
+            "options": [
+              "my room",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for غرفتي: my room. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for غرفتي: my room. This draft has not been reviewed.",
+              "Candidate gloss for غرفتي: my room. This draft has not been reviewed.",
+              "Candidate gloss for غرفتي: my room. This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "home-1-s5",
+          "arabic": "المطبخ نظيف",
+          "english": "The kitchen is clean",
+          "transliteration": "al-maṭbakh naẓīf",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 6,
+              "arabic": "المطبخ",
+              "transliteration": "al-maṭbakh",
+              "meaning": "the kitchen",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 7,
+              "end": 11,
+              "arabic": "نظيف",
+              "transliteration": "naẓīf",
+              "meaning": "clean",
+              "partOfSpeech": "adj",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches المطبخ?",
+            "options": [
+              "the kitchen",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for المطبخ: the kitchen. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for المطبخ: the kitchen. This draft has not been reviewed.",
+              "Candidate gloss for المطبخ: the kitchen. This draft has not been reviewed.",
+              "Candidate gloss for المطبخ: the kitchen. This draft has not been reviewed."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "daily-1",
+      "topic": "daily_activities",
+      "title": "Daily activities",
+      "objective": "Recognize simple first-person routine verbs",
+      "difficulty": "A1",
+      "reviewStatus": "draft",
+      "prerequisites": [
+        "greetings-1"
+      ],
+      "sentences": [
+        {
+          "id": "daily-1-s1",
+          "arabic": "أستيقظ صباحا",
+          "english": "أستيقظ صباحا",
+          "transliteration": "astayqiẓ ṣabāḥan",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 6,
+              "arabic": "أستيقظ",
+              "transliteration": "astayqiẓ",
+              "meaning": "I wake up",
+              "partOfSpeech": "verb",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 7,
+              "end": 12,
+              "arabic": "صباحا",
+              "transliteration": "ṣabāḥan",
+              "meaning": "in the morning",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches أستيقظ?",
+            "options": [
+              "I wake up",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for أستيقظ: I wake up. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for أستيقظ: I wake up. This draft has not been reviewed.",
+              "Candidate gloss for أستيقظ: I wake up. This draft has not been reviewed.",
+              "Candidate gloss for أستيقظ: I wake up. This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "daily-1-s2",
+          "arabic": "أذهب إلى المدرسة",
+          "english": "أذهب إلى المدرسة",
+          "transliteration": "adhhab ilā al-madrasa",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 4,
+              "arabic": "أذهب",
+              "transliteration": "adhhab",
+              "meaning": "I go",
+              "partOfSpeech": "verb",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 5,
+              "end": 8,
+              "arabic": "إلى",
+              "transliteration": "ilā",
+              "meaning": "to",
+              "partOfSpeech": "prep",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 9,
+              "end": 16,
+              "arabic": "المدرسة",
+              "transliteration": "al-madrasa",
+              "meaning": "the school",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches أذهب?",
+            "options": [
+              "I go",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for أذهب: I go. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for أذهب: I go. This draft has not been reviewed.",
+              "Candidate gloss for أذهب: I go. This draft has not been reviewed.",
+              "Candidate gloss for أذهب: I go. This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "daily-1-s3",
+          "arabic": "أقرأ كتابا",
+          "english": "أقرأ كتابا",
+          "transliteration": "aqraʾ kitāban",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 4,
+              "arabic": "أقرأ",
+              "transliteration": "aqraʾ",
+              "meaning": "I read",
+              "partOfSpeech": "verb",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 5,
+              "end": 10,
+              "arabic": "كتابا",
+              "transliteration": "kitāban",
+              "meaning": "a book",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches أقرأ?",
+            "options": [
+              "I read",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for أقرأ: I read. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for أقرأ: I read. This draft has not been reviewed.",
+              "Candidate gloss for أقرأ: I read. This draft has not been reviewed.",
+              "Candidate gloss for أقرأ: I read. This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "daily-1-s4",
+          "arabic": "أنام ليلا",
+          "english": "أنام ليلا",
+          "transliteration": "anām laylan",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 4,
+              "arabic": "أنام",
+              "transliteration": "anām",
+              "meaning": "I sleep",
+              "partOfSpeech": "verb",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 5,
+              "end": 9,
+              "arabic": "ليلا",
+              "transliteration": "laylan",
+              "meaning": "at night",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches أنام?",
+            "options": [
+              "I sleep",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for أنام: I sleep. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for أنام: I sleep. This draft has not been reviewed.",
+              "Candidate gloss for أنام: I sleep. This draft has not been reviewed.",
+              "Candidate gloss for أنام: I sleep. This draft has not been reviewed."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "shopping-1",
+      "topic": "shopping",
+      "title": "Shopping and money",
+      "objective": "Use simple phrases to identify a purchase and ask a price",
+      "difficulty": "A1",
+      "reviewStatus": "draft",
+      "prerequisites": [
+        "greetings-1"
+      ],
+      "sentences": [
+        {
+          "id": "shopping-1-s1",
+          "arabic": "أريد هذا القميص",
+          "english": "أريد هذا القميص",
+          "transliteration": "urīd hādhā al-qamīṣ",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 4,
+              "arabic": "أريد",
+              "transliteration": "urīd",
+              "meaning": "I want",
+              "partOfSpeech": "verb",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 5,
+              "end": 8,
+              "arabic": "هذا",
+              "transliteration": "hādhā",
+              "meaning": "this (masculine)",
+              "partOfSpeech": "other",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 9,
+              "end": 15,
+              "arabic": "القميص",
+              "transliteration": "al-qamīṣ",
+              "meaning": "the shirt",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches أريد?",
+            "options": [
+              "I want",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for أريد: I want. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for أريد: I want. This draft has not been reviewed.",
+              "Candidate gloss for أريد: I want. This draft has not been reviewed.",
+              "Candidate gloss for أريد: I want. This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "shopping-1-s2",
+          "arabic": "كم سعر القميص",
+          "english": "كم سعر القميص",
+          "transliteration": "kam siʿr al-qamīṣ",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 2,
+              "arabic": "كم",
+              "transliteration": "kam",
+              "meaning": "how much",
+              "partOfSpeech": "particle",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 3,
+              "end": 6,
+              "arabic": "سعر",
+              "transliteration": "siʿr",
+              "meaning": "price",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 7,
+              "end": 13,
+              "arabic": "القميص",
+              "transliteration": "al-qamīṣ",
+              "meaning": "the shirt",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches كم?",
+            "options": [
+              "how much",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for كم: how much. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for كم: how much. This draft has not been reviewed.",
+              "Candidate gloss for كم: how much. This draft has not been reviewed.",
+              "Candidate gloss for كم: how much. This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "shopping-1-s3",
+          "arabic": "أشتري تفاحا",
+          "english": "أشتري تفاحا",
+          "transliteration": "ashtarī tuffāḥan",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 5,
+              "arabic": "أشتري",
+              "transliteration": "ashtarī",
+              "meaning": "I buy",
+              "partOfSpeech": "verb",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 6,
+              "end": 11,
+              "arabic": "تفاحا",
+              "transliteration": "tuffāḥan",
+              "meaning": "apples",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches أشتري?",
+            "options": [
+              "I buy",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for أشتري: I buy. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for أشتري: I buy. This draft has not been reviewed.",
+              "Candidate gloss for أشتري: I buy. This draft has not been reviewed.",
+              "Candidate gloss for أشتري: I buy. This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "shopping-1-s4",
+          "arabic": "السوق قريب",
+          "english": "السوق قريب",
+          "transliteration": "as-sūq qarīb",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 5,
+              "arabic": "السوق",
+              "transliteration": "as-sūq",
+              "meaning": "the market",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 6,
+              "end": 10,
+              "arabic": "قريب",
+              "transliteration": "qarīb",
+              "meaning": "near",
+              "partOfSpeech": "adj",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches السوق?",
+            "options": [
+              "the market",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for السوق: the market. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for السوق: the market. This draft has not been reviewed.",
+              "Candidate gloss for السوق: the market. This draft has not been reviewed.",
+              "Candidate gloss for السوق: the market. This draft has not been reviewed."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "school-work-1",
+      "topic": "school_work",
+      "title": "School and work",
+      "objective": "Recognize common classroom and workplace statements",
+      "difficulty": "A1",
+      "reviewStatus": "draft",
+      "prerequisites": [
+        "greetings-1"
+      ],
+      "sentences": [
+        {
+          "id": "school-work-1-s1",
+          "arabic": "أعمل في مكتب",
+          "english": "أعمل في مكتب",
+          "transliteration": "aʿmal fī maktab",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 4,
+              "arabic": "أعمل",
+              "transliteration": "aʿmal",
+              "meaning": "I work",
+              "partOfSpeech": "verb",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 5,
+              "end": 7,
+              "arabic": "في",
+              "transliteration": "fī",
+              "meaning": "in",
+              "partOfSpeech": "prep",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 8,
+              "end": 12,
+              "arabic": "مكتب",
+              "transliteration": "maktab",
+              "meaning": "an office",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches أعمل?",
+            "options": [
+              "I work",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for أعمل: I work. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for أعمل: I work. This draft has not been reviewed.",
+              "Candidate gloss for أعمل: I work. This draft has not been reviewed.",
+              "Candidate gloss for أعمل: I work. This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "school-work-1-s2",
+          "arabic": "أدرس العربية",
+          "english": "أدرس العربية",
+          "transliteration": "adrus al-ʿarabiyya",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 4,
+              "arabic": "أدرس",
+              "transliteration": "adrus",
+              "meaning": "I study",
+              "partOfSpeech": "verb",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 5,
+              "end": 12,
+              "arabic": "العربية",
+              "transliteration": "al-ʿarabiyya",
+              "meaning": "Arabic",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches أدرس?",
+            "options": [
+              "I study",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for أدرس: I study. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for أدرس: I study. This draft has not been reviewed.",
+              "Candidate gloss for أدرس: I study. This draft has not been reviewed.",
+              "Candidate gloss for أدرس: I study. This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "school-work-1-s3",
+          "arabic": "المعلم في الفصل",
+          "english": "المعلم في الفصل",
+          "transliteration": "al-muʿallim fī al-faṣl",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 6,
+              "arabic": "المعلم",
+              "transliteration": "al-muʿallim",
+              "meaning": "the teacher",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 7,
+              "end": 9,
+              "arabic": "في",
+              "transliteration": "fī",
+              "meaning": "in",
+              "partOfSpeech": "prep",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 10,
+              "end": 15,
+              "arabic": "الفصل",
+              "transliteration": "al-faṣl",
+              "meaning": "the classroom",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches المعلم?",
+            "options": [
+              "the teacher",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for المعلم: the teacher. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for المعلم: the teacher. This draft has not been reviewed.",
+              "Candidate gloss for المعلم: the teacher. This draft has not been reviewed.",
+              "Candidate gloss for المعلم: the teacher. This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "school-work-1-s4",
+          "arabic": "أكتب واجبي",
+          "english": "أكتب واجبي",
+          "transliteration": "aktub wājibī",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 4,
+              "arabic": "أكتب",
+              "transliteration": "aktub",
+              "meaning": "I write",
+              "partOfSpeech": "verb",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 5,
+              "end": 10,
+              "arabic": "واجبي",
+              "transliteration": "wājibī",
+              "meaning": "my homework",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches أكتب?",
+            "options": [
+              "I write",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for أكتب: I write. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for أكتب: I write. This draft has not been reviewed.",
+              "Candidate gloss for أكتب: I write. This draft has not been reviewed.",
+              "Candidate gloss for أكتب: I write. This draft has not been reviewed."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "travel-1",
+      "topic": "travel",
+      "title": "Travel and practical conversations",
+      "objective": "Understand simple transport and travel phrases",
+      "difficulty": "A1",
+      "reviewStatus": "draft",
+      "prerequisites": [
+        "greetings-1"
+      ],
+      "sentences": [
+        {
+          "id": "travel-1-s1",
+          "arabic": "أين المحطة",
+          "english": "أين المحطة",
+          "transliteration": "ayna al-maḥaṭṭa",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 3,
+              "arabic": "أين",
+              "transliteration": "ayna",
+              "meaning": "where",
+              "partOfSpeech": "particle",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 4,
+              "end": 10,
+              "arabic": "المحطة",
+              "transliteration": "al-maḥaṭṭa",
+              "meaning": "the station",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches أين?",
+            "options": [
+              "where",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for أين: where. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for أين: where. This draft has not been reviewed.",
+              "Candidate gloss for أين: where. This draft has not been reviewed.",
+              "Candidate gloss for أين: where. This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "travel-1-s2",
+          "arabic": "أذهب إلى المطار",
+          "english": "أذهب إلى المطار",
+          "transliteration": "adhhab ilā al-maṭār",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 4,
+              "arabic": "أذهب",
+              "transliteration": "adhhab",
+              "meaning": "I go",
+              "partOfSpeech": "verb",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 5,
+              "end": 8,
+              "arabic": "إلى",
+              "transliteration": "ilā",
+              "meaning": "to",
+              "partOfSpeech": "prep",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 9,
+              "end": 15,
+              "arabic": "المطار",
+              "transliteration": "al-maṭār",
+              "meaning": "the airport",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches أذهب?",
+            "options": [
+              "I go",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for أذهب: I go. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for أذهب: I go. This draft has not been reviewed.",
+              "Candidate gloss for أذهب: I go. This draft has not been reviewed.",
+              "Candidate gloss for أذهب: I go. This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "travel-1-s3",
+          "arabic": "الحافلة هنا",
+          "english": "الحافلة هنا",
+          "transliteration": "al-ḥāfila hunā",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 7,
+              "arabic": "الحافلة",
+              "transliteration": "al-ḥāfila",
+              "meaning": "the bus",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 8,
+              "end": 11,
+              "arabic": "هنا",
+              "transliteration": "hunā",
+              "meaning": "here",
+              "partOfSpeech": "other",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches الحافلة?",
+            "options": [
+              "the bus",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for الحافلة: the bus. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for الحافلة: the bus. This draft has not been reviewed.",
+              "Candidate gloss for الحافلة: the bus. This draft has not been reviewed.",
+              "Candidate gloss for الحافلة: the bus. This draft has not been reviewed."
+            ]
+          }
+        },
+        {
+          "id": "travel-1-s4",
+          "arabic": "أريد تذكرة واحدة",
+          "english": "أريد تذكرة واحدة",
+          "transliteration": "urīd tadhkira wāḥida",
+          "tokens": [
+            {
+              "start": 0,
+              "end": 4,
+              "arabic": "أريد",
+              "transliteration": "urīd",
+              "meaning": "I want",
+              "partOfSpeech": "verb",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 5,
+              "end": 10,
+              "arabic": "تذكرة",
+              "transliteration": "tadhkira",
+              "meaning": "a ticket",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            },
+            {
+              "start": 11,
+              "end": 16,
+              "arabic": "واحدة",
+              "transliteration": "wāḥida",
+              "meaning": "one (feminine)",
+              "partOfSpeech": "noun",
+              "grammarNote": "Candidate annotation; requires qualified Arabic review before use as trusted grammar guidance."
+            }
+          ],
+          "question": {
+            "prompt": "Draft check: which candidate gloss matches أريد?",
+            "options": [
+              "I want",
+              "a different contextual meaning",
+              "an unrelated meaning",
+              "unreviewed distractor"
+            ],
+            "correctIndex": 0,
+            "correctExplanation": "Candidate gloss for أريد: I want. This draft has not been reviewed.",
+            "incorrectExplanations": [
+              "Candidate gloss for أريد: I want. This draft has not been reviewed.",
+              "Candidate gloss for أريد: I want. This draft has not been reviewed.",
+              "Candidate gloss for أريد: I want. This draft has not been reviewed."
+            ]
+          }
+        }
+      ]
     }
-  ]
+  ],
+  "packId": "sofer-a1-candidate-2026"
 }

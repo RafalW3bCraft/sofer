@@ -1,10 +1,13 @@
+import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import LessonList from "./pages/LessonList";
-import LessonPlayer from "./pages/LessonPlayer";
 import Alphabet from "./pages/Alphabet";
 import Progress from "./pages/Progress";
+const LessonPlayer = lazy(() => import("./pages/LessonPlayer"));
+const Settings = lazy(() => import("./pages/Settings"));
+const Practice = lazy(() => import("./pages/Practice"));
 
 export default function App() {
   return (
@@ -14,14 +17,19 @@ export default function App() {
       </a>
       <Header />
       <main id="main" className="app-main">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/lessons" element={<LessonList />} />
-          <Route path="/lessons/:lessonId" element={<LessonPlayer />} />
-          <Route path="/alphabet" element={<Alphabet />} />
-          <Route path="/progress" element={<Progress />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Suspense fallback={<p role="status">Opening this learning area…</p>}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/lessons" element={<LessonList />} />
+            <Route path="/lessons/:lessonId" element={<LessonPlayer />} />
+            <Route path="/alphabet" element={<Alphabet />} />
+            <Route path="/progress" element={<Progress />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/practice" element={<Practice />} />
+            <Route path="/review" element={<Practice />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </main>
       <footer className="app-footer">
         <small>

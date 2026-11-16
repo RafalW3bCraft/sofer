@@ -1,10 +1,13 @@
 import { useEffect, useRef } from "react";
-import type { Sentence, Token } from "../../../shared/schemas";
+import type { Lesson, Sentence, Token } from "../../../shared/schemas";
 import { speakArabic } from "../lib/speech";
 import { useArabicSpeechStatus } from "../lib/useArabicSpeechStatus";
 import AiTutorButton from "./AiTutorButton";
+import { buildTutorContext } from "../lib/ai/contextBuilder";
+import { readSettings } from "../lib/settings";
 
 interface Props {
+  lesson: Lesson;
   sentence: Sentence;
   token: Token;
   isTricky: boolean;
@@ -13,7 +16,9 @@ interface Props {
 }
 
 export default function TokenPanel({
+  lesson,
   token,
+  sentence,
   isTricky,
   onToggleTricky,
   onClose,
@@ -32,6 +37,7 @@ export default function TokenPanel({
   }, [onClose]);
 
   const speechStatus = useArabicSpeechStatus();
+  const audioEnabled = readSettings().audioEnabled;
 
   return (
     <section
@@ -50,7 +56,7 @@ export default function TokenPanel({
       <p className="token-panel__meaning">{token.meaning}</p>
       <p className="token-panel__grammar">{token.grammarNote}</p>
       <div className="token-panel__actions">
-        {speechStatus.kind === "ready" ? (
+        {audioEnabled && speechStatus.kind === "ready" ? (
           <button
             type="button"
             className="btn"
@@ -58,7 +64,7 @@ export default function TokenPanel({
           >
             Listen
           </button>
-        ) : (
+        ) : audioEnabled ? (
           <span
             className="btn btn--ghost"
             aria-disabled="true"
@@ -70,7 +76,7 @@ export default function TokenPanel({
           >
             Listen (unavailable)
           </span>
-        )}
+        ) : null}
         <button
           type="button"
           className="btn"
@@ -79,7 +85,10 @@ export default function TokenPanel({
         >
           {isTricky ? "Marked tricky — click to unmark" : "Mark as tricky"}
         </button>
-        <AiTutorButton context="word" arabic={token.arabic} />
+        {lesson.reviewStatus !== "draft" && <AiTutorButton
+          initialTask="explain_word"
+          contextPacket={buildTutorContext({ lesson, sentence, token })}
+        />}
         <button type="button" className="btn btn--ghost" onClick={onClose}>
           Close
         </button>

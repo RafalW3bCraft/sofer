@@ -11,13 +11,39 @@ const raw = JSON.parse(readFileSync(lessonsPath, "utf8"));
 const data = LessonsFileSchema.parse(raw);
 
 describe("lessons.json", () => {
-  it("contains exactly 7 sentences across the lessons", () => {
+  it("preserves the original lesson IDs and supports the expanded candidate pack", () => {
     const total = data.lessons.reduce((n, l) => n + l.sentences.length, 0);
-    expect(total).toBe(7);
+    expect(total).toBe(48);
+    expect(data.lessons.slice(0, 3).map((lesson) => lesson.id)).toEqual([
+      "greetings-1", "numbers-1", "directions-1",
+    ]);
   });
 
-  it("has 3 lessons", () => {
-    expect(data.lessons.length).toBe(3);
+  it("has 12 lessons, with additions clearly marked as draft", () => {
+    expect(data.lessons.length).toBe(12);
+    expect(data.lessons.filter((lesson) => lesson.reviewStatus !== "draft").length).toBe(3);
+    expect(data.lessons.filter((lesson) => lesson.reviewStatus === "draft").length).toBe(9);
+  });
+
+  it("accepts expanded A1 topics and draft lessons with more than three sentences", () => {
+    const lesson = data.lessons[0]!;
+    const expanded = {
+      version: 2,
+      lessons: [{
+        ...lesson,
+        id: "food-1",
+        topic: "food",
+        reviewStatus: "draft",
+        prerequisites: [lesson.id],
+        vocabularyRefs: ["food:water"],
+        grammarRefs: ["present-tense"],
+        sentences: Array.from({ length: 4 }, (_, i) => ({
+          ...lesson.sentences[i % lesson.sentences.length]!,
+          id: `food-s${i + 1}`,
+        })),
+      }],
+    };
+    expect(LessonsFileSchema.safeParse(expanded).success).toBe(true);
   });
 
   it("every token's arabic substring matches the offsets", () => {

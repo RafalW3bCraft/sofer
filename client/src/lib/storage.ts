@@ -150,7 +150,7 @@ export function markTokenTricky(
   current: TrickyTokensV1,
   tokenId: string
 ): TrickyTokensV1 {
-  if (current.tricky[tokenId]) return current;
+  if (current.tricky[tokenId] && !current.tricky[tokenId].removedAt) return current;
   return {
     schemaVersion: 1,
     tricky: {
@@ -164,9 +164,9 @@ export function unmarkTokenTricky(
   current: TrickyTokensV1,
   tokenId: string
 ): TrickyTokensV1 {
-  if (!current.tricky[tokenId]) return current;
-  const next = { ...current.tricky };
-  delete next[tokenId];
+  const existing = current.tricky[tokenId];
+  if (!existing || existing.removedAt) return current;
+  const next = { ...current.tricky, [tokenId]: { ...existing, removedAt: new Date().toISOString() } };
   return { schemaVersion: 1, tricky: next };
 }
 

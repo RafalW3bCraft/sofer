@@ -1,10 +1,8 @@
 import path from "node:path";
 import url from "node:url";
 import express, { type Request, type Response, type NextFunction } from "express";
-import { createExplainRouter } from "./routes/explain.js";
-import { createMeRouter } from "./routes/me.js";
 import { createDictionaryRouter } from "./routes/dictionary.js";
-import { getAuth } from "./lib/auth.js";
+import { getDb } from "./db/index.js";
 import { logger } from "./lib/logger.js";
 import { loadDotenv } from "./lib/env.js";
 
@@ -19,9 +17,7 @@ const NODE_ENV = process.env.NODE_ENV ?? "development";
 export function createApp(): express.Express {
   const app = express();
 
-  // Tight body cap so a malicious client can't dump a huge payload at the
-  // /api/ai/explain endpoint. 8 KB is more than enough for a one-sentence
-  // request plus Token Factory prompt scaffolding.
+  // Keep JSON request bodies small for the remaining dictionary/API routes.
   app.use(express.json({ limit: "8kb" }));
 
   // Baseline security headers for every response. The SPA is self-contained
@@ -33,7 +29,7 @@ export function createApp(): express.Express {
     res.setHeader("Referrer-Policy", "no-referrer");
     res.setHeader(
       "Content-Security-Policy",
-      "default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'"
+      "default-src 'self'; script-src 'self' https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://firebasevertexai.googleapis.com https://generativelanguage.googleapis.com https://firebaseappcheck.googleapis.com https://firebaseinstallations.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firestore.googleapis.com https://www.google.com https://recaptchaenterprise.googleapis.com; frame-src https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/; object-src 'none'; base-uri 'self'; frame-ancestors 'none'"
     );
     next();
   });
@@ -41,52 +37,13 @@ export function createApp(): express.Express {
   app.get("/api/health", (_req: Request, res: Response) => {
     res.json({
       ok: true,
-      tokenFactoryConfigured: Boolean(process.env.TOKENFACTORY_API_KEY),
     });
   });
 
-  app.use("/api/ai", createExplainRouter());
-
-  // Production-platform slice (active only when DATABASE_URL is set):
-  // Better Auth handler + authenticated /api/me/* + public dictionary.
-  const auth = getAuth();
-  if (auth) {
-    app.all("/api/auth/*", (req: Request, res: Response) => {
-      // Bridge Express <-> Fetch API handler. express.json() already parsed
-      // the body upstream, so forward the parsed object instead of trying to
-      // re-read the (already consumed) request stream.
-      const origin = `${req.protocol}://${req.get("host") ?? "127.0.0.1"}`;
-      const url = new URL(req.originalUrl, origin);
-      const headers = new Headers();
-      for (const [k, v] of Object.entries(req.headers)) {
-        if (typeof v === "string") headers.set(k, v);
-        else if (Array.isArray(v)) headers.set(k, v.join(", "));
-      }
-      headers.set("content-type", "application/json");
-      const body =
-        req.method === "GET" || req.method === "HEAD"
-          ? undefined
-          : JSON.stringify(req.body ?? {});
-      void (async () => {
-        try {
-          const authRes = await auth.handler(
-            new Request(url, { method: req.method, headers, body })
-          );
-          res.status(authRes.status);
-          authRes.headers.forEach((value: string, key: string) => {
-            res.setHeader(key, value);
-          });
-          const buf = Buffer.from(await authRes.arrayBuffer());
-          res.send(buf);
-        } catch (e) {
-          logger.error("auth handler error", e instanceof Error ? e.message : String(e));
-          if (!res.headersSent) {
-            res.status(500).json({ error: "internal_error", message: "Auth failed." });
-          }
-        }
-      })();
-    });
-    app.use("/api/me", createMeRouter());
+  // Firebase Auth and Firestore are the active account/progress system.
+  // Keep the public, non-personal dictionary API available when PostgreSQL
+  // is configured, without mounting the legacy Better Auth account routes.
+  if (getDb()) {
     app.use("/api/dictionary", createDictionaryRouter());
   }
 

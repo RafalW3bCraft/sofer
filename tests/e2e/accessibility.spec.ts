@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { AxeBuilder } from "@axe-core/playwright";
 
-// Automated axe-core accessibility audit of the five core pages, at WCAG
+// Automated axe-core accessibility audit of the core pages, at WCAG
 // 2.2 A/AA level. Zero automated violations is NOT a substitute for human
 // screen-reader review — this is the mechanical floor.
 const pages = [
@@ -10,6 +10,8 @@ const pages = [
   { name: "lesson player", path: "/lessons/greetings-1" },
   { name: "alphabet", path: "/alphabet" },
   { name: "progress", path: "/progress" },
+  { name: "practice", path: "/practice" },
+  { name: "settings", path: "/settings" },
 ];
 
 test.describe("axe-core WCAG 2.2 A/AA audit", () => {

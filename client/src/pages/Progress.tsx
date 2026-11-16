@@ -18,6 +18,7 @@ import {
   accuracyPercent,
   lessonsCompletedCount,
 } from "../lib/progress";
+import { clearReviewStore } from "../lib/reviewStorage";
 
 const lessonsFile = LessonsFileSchema.parse(lessonsData);
 
@@ -43,10 +44,11 @@ export default function Progress() {
     setProgress(emptyProgress());
     setTricky(emptyTrickyTokens());
     clearProgress();
+    clearReviewStore();
     setResetting(false);
   };
 
-  const trickyList = Object.entries(tricky.tricky).map(([id, info]) => {
+  const trickyList = Object.entries(tricky.tricky).filter(([, info]) => !info.removedAt).map(([id, info]) => {
     const [lessonId, sentenceId, tokenIndexStr] = id.split(":");
     const lesson = lessonsFile.lessons.find((l) => l.id === lessonId);
     const sentence = lesson?.sentences.find((s) => s.id === sentenceId);

@@ -3,16 +3,17 @@ import { Link } from "react-router-dom";
 import lessonsData from "../content/lessons.json";
 import { LessonsFileSchema } from "../../../shared/schemas";
 import { readProgress } from "../lib/storage";
-import { lessonsCompletedCount, resumeSentenceIndex } from "../lib/progress";
+import { resumeSentenceIndex } from "../lib/progress";
 
 const lessonsFile = LessonsFileSchema.parse(lessonsData);
 
 export default function LessonList() {
+  const trustedLessons = lessonsFile.lessons.filter((lesson) => lesson.reviewStatus !== "draft");
   const initial = useMemo(() => readProgress(), []);
   const progress = initial.ok ? initial.value : null;
   const completed = progress ? progress.lessons : {};
   const firstUncompleted = useMemo(() => {
-    for (const lesson of lessonsFile.lessons) {
+    for (const lesson of trustedLessons) {
       const ids = lesson.sentences.map((s) => s.id);
       // A lesson is done only when every sentence has been answered.
       const next = progress
@@ -22,14 +23,16 @@ export default function LessonList() {
       if (!isDone) return lesson.id;
     }
     return null;
-  }, [progress]);
-  const completedCount = progress ? lessonsCompletedCount(progress) : 0;
+  }, [progress, trustedLessons]);
+  const completedCount = progress
+    ? trustedLessons.filter((lesson) => Boolean(progress.lessons[lesson.id]?.completedAt)).length
+    : 0;
 
   return (
     <section className="page">
       <h1>Lessons</h1>
       <p style={{ color: "var(--color-text-soft)" }}>
-        {completedCount} of {lessonsFile.lessons.length} lessons complete.
+        {completedCount} of {trustedLessons.length} reviewed lessons complete.
       </p>
       {firstUncompleted && (
         <p>
@@ -40,7 +43,8 @@ export default function LessonList() {
       )}
       <ul className="lesson-list" aria-label="Available lessons">
         {lessonsFile.lessons.map((lesson) => {
-          const done = Boolean(completed[lesson.id]);
+          const isDraft = lesson.reviewStatus === "draft";
+          const done = !isDraft && Boolean(completed[lesson.id]);
           return (
             <li key={lesson.id}>
               <Link to={`/lessons/${lesson.id}`} className="lesson-list__item">
@@ -48,12 +52,15 @@ export default function LessonList() {
                   <span className="lesson-list__title">{lesson.title}</span>
                   <br />
                   <span className="lesson-list__topic">
-                    {lesson.topic} · {lesson.sentences.length} sentence
+                    {lesson.topic} · {lesson.sentences.length} candidate sentence
                     {lesson.sentences.length === 1 ? "" : "s"}
+                    {isDraft && " · draft, needs review"}
                   </span>
                 </span>
                 <span aria-hidden="true">
-                  {done ? (
+                  {isDraft ? (
+                    <span className="lesson-list__draft">Draft</span>
+                  ) : done ? (
                     <span className="lesson-list__check" aria-label="Completed">
                       ✓ done
                     </span>
@@ -62,7 +69,7 @@ export default function LessonList() {
                   )}
                 </span>
                 <span className="visually-hidden">
-                  {done ? "Completed. Click to review." : "Not yet started."}
+                  {isDraft ? "Draft content. Not included in trusted grading." : done ? "Completed. Click to review." : "Not yet started."}
                 </span>
               </Link>
             </li>

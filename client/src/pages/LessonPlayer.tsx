@@ -9,6 +9,8 @@ import {
 } from "../../../shared/schemas";
 import SentenceArea from "../components/SentenceArea";
 import TokenPanel from "../components/TokenPanel";
+import AiTutorButton from "../components/AiTutorButton";
+import { buildTutorContext } from "../lib/ai/contextBuilder";
 import QuestionArea from "../components/QuestionArea";
 import {
   readProgress,
@@ -25,6 +27,7 @@ import {
   resumeSentenceIndex,
 } from "../lib/progress";
 import type { ProgressV2 } from "../../../shared/schemas";
+import { readSettings, updateSettings } from "../lib/settings";
 
 const lessonsFile = LessonsFileSchema.parse(lessonsData);
 
@@ -70,7 +73,7 @@ export default function LessonPlayer() {
     return r.ok ? r.value : emptyTrickyTokens();
   });
   const [selection, setSelection] = useState<Selection>({ kind: "none" });
-  const [showTranslit, setShowTranslit] = useState(false);
+  const [showTranslit, setShowTranslit] = useState(() => readSettings().showTransliteration);
   const [lessonJustCompleted, setLessonJustCompleted] = useState(false);
 
   // The current sentence index is INITIALIZED from stored progress (resume)
@@ -190,7 +193,7 @@ export default function LessonPlayer() {
     (sentenceId: string, tokenIndex: number) => {
       if (!lesson) return;
       const id = tokenId(lesson.id, sentenceId, tokenIndex);
-      const updated = tricky.tricky[id]
+      const updated = tricky.tricky[id] && !tricky.tricky[id].removedAt
         ? unmarkTokenTricky(tricky, id)
         : markTokenTricky(tricky, id);
       writeTrickyTokens(updated);
@@ -225,14 +228,18 @@ export default function LessonPlayer() {
       </p>
       <header>
         <h1>{lesson.title}</h1>
+        {lesson.reviewStatus === "draft" && (
+          <p className="notice" role="note">Candidate content · this lesson has not had qualified Arabic review. Its word notes are drafts and no answers are graded or saved.</p>
+        )}
         <p style={{ color: "var(--color-text-soft)" }}>{lesson.objective}</p>
         <p>
           Sentence {sentenceIdx + 1} of {lesson.sentences.length}
           {lessonJustCompleted && " · ✓ Lesson complete"}
         </p>
         <p className="lesson-hint">
-          Tap any Arabic word below to see its meaning and grammar — then answer
-          the question to continue.
+          {lesson.reviewStatus === "draft"
+            ? "Tap an Arabic word to inspect its draft annotation, then move through the candidate sentences."
+            : "Tap any Arabic word below to see its meaning and grammar — then answer the question to continue."}
         </p>
       </header>
 
@@ -242,7 +249,11 @@ export default function LessonPlayer() {
           Object.keys(tricky.tricky).filter((id) => id.startsWith(`${lesson.id}:${sentence.id}:`))
         )}
         showTranslit={showTranslit}
-        onToggleTranslit={() => setShowTranslit((v) => !v)}
+        onToggleTranslit={() => setShowTranslit((visible) => {
+          const next = !visible;
+          updateSettings({ showTransliteration: next });
+          return next;
+        })}
         selectedTokenIndex={
           selection.kind !== "none" ? selection.tokenIndex : null
         }
@@ -263,12 +274,18 @@ export default function LessonPlayer() {
         }}
       />
 
+      {lesson.reviewStatus !== "draft" && <AiTutorButton
+        initialTask="explain_sentence"
+        contextPacket={buildTutorContext({ lesson, sentence })}
+      />}
+
       {selection.kind === "token" && currentToken && (
         <TokenPanel
+          lesson={lesson}
           sentence={sentence}
           token={currentToken}
           isTricky={Boolean(
-            tricky.tricky[tokenId(lesson.id, sentence.id, currentTokenIndex(selection))]
+            tricky.tricky[tokenId(lesson.id, sentence.id, currentTokenIndex(selection))] && !tricky.tricky[tokenId(lesson.id, sentence.id, currentTokenIndex(selection))]?.removedAt
           )}
           onToggleTricky={() =>
             handleToggleTricky(sentence.id, currentTokenIndex(selection))
@@ -283,12 +300,19 @@ export default function LessonPlayer() {
         </p>
       )}
 
-      <QuestionArea
+      {lesson.reviewStatus === "draft" ? (
+        <section className="question" aria-label="Draft preview navigation">
+          <p>Draft comprehension exercise withheld until this lesson is reviewed.</p>
+          <button type="button" className="btn btn--primary" onClick={handleAdvance}>
+            {sentenceIdx + 1 === lesson.sentences.length ? "Return to lessons" : "Next draft sentence"}
+          </button>
+        </section>
+      ) : <QuestionArea
         question={sentence.question}
         onSubmit={handleAnswer}
         onAdvance={handleAdvance}
         isLast={sentenceIdx + 1 === lesson.sentences.length}
-      />
+      />}
     </section>
   );
 }
