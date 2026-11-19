@@ -25,16 +25,16 @@ describe("loadDotenv", () => {
     workdir = mkdtempSync(join(tmpdir(), "sofer-dotenv-"));
     writeFileSync(
       join(workdir, ".env"),
-      "TOKENFACTORY_API_KEY=abc123\nTOKENFACTORY_MODEL=mock-model\n# comment line\n\nQUOTED=\"some value\"\n"
+      "TEST_API_KEY=abc123\nTEST_MODEL=mock-model\n# comment line\n\nQUOTED=\"some value\"\n"
     );
     vi.resetModules();
     const { loadDotenv } = await import("../../server/lib/env");
-    delete process.env.TOKENFACTORY_API_KEY;
-    delete process.env.TOKENFACTORY_MODEL;
+    delete process.env.TEST_API_KEY;
+    delete process.env.TEST_MODEL;
     const r = loadDotenv([join(workdir, ".env")]);
     expect(r.loadedFrom).toBe(join(workdir, ".env"));
-    expect(process.env.TOKENFACTORY_API_KEY).toBe("abc123");
-    expect(process.env.TOKENFACTORY_MODEL).toBe("mock-model");
+    expect(process.env.TEST_API_KEY).toBe("abc123");
+    expect(process.env.TEST_MODEL).toBe("mock-model");
     expect(process.env.QUOTED).toBe("some value");
   });
 
@@ -42,28 +42,28 @@ describe("loadDotenv", () => {
     workdir = mkdtempSync(join(tmpdir(), "sofer-dotenv-"));
     writeFileSync(
       join(workdir, ".env"),
-      "TOKENFACTORY_API_KEY=from-file\nTOKENFACTORY_MODEL=from-file\n"
+      "TEST_API_KEY=from-file\nTEST_MODEL=from-file\n"
     );
     vi.resetModules();
     const { loadDotenv } = await import("../../server/lib/env");
-    process.env.TOKENFACTORY_API_KEY = "from-env";
-    delete process.env.TOKENFACTORY_MODEL;
+    process.env.TEST_API_KEY = "from-env";
+    delete process.env.TEST_MODEL;
     loadDotenv([join(workdir, ".env")]);
-    expect(process.env.TOKENFACTORY_API_KEY).toBe("from-env");
-    expect(process.env.TOKENFACTORY_MODEL).toBe("from-file");
+    expect(process.env.TEST_API_KEY).toBe("from-env");
+    expect(process.env.TEST_MODEL).toBe("from-file");
   });
 
   it("strips inline # comments after whitespace", async () => {
     workdir = mkdtempSync(join(tmpdir(), "sofer-dotenv-"));
     writeFileSync(
       join(workdir, ".env"),
-      "TOKENFACTORY_MODEL=foo # this is a comment\n"
+      "TEST_MODEL=foo # this is a comment\n"
     );
     vi.resetModules();
     const { loadDotenv } = await import("../../server/lib/env");
-    delete process.env.TOKENFACTORY_MODEL;
+    delete process.env.TEST_MODEL;
     loadDotenv([join(workdir, ".env")]);
-    expect(process.env.TOKENFACTORY_MODEL).toBe("foo");
+    expect(process.env.TEST_MODEL).toBe("foo");
   });
 
   it("does not crash when no candidate path exists", async () => {

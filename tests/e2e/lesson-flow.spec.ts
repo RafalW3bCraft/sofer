@@ -17,16 +17,13 @@ test.describe("learner flow", () => {
   test("home -> lesson -> token -> answer -> next sentence -> progress", async ({ page }) => {
     await page.goto("/");
     await expect(
-      page.getByRole("heading", { name: /Learn your first Arabic sentences/i })
+      page.getByRole("heading", { name: /A new language,\s*one sentence at a time/i })
     ).toBeVisible();
-    await page.getByRole("link", { name: /Start Learning/i }).click();
+    await page.getByRole("link", { name: /Start your first lesson/i }).click();
 
-    await expect(page.getByRole("heading", { name: /Lessons/i })).toBeVisible();
     await expect(
-      page.getByText(/Greetings and basic courtesies/i)
+      page.getByRole("heading", { name: /Greetings and basic courtesies/i })
     ).toBeVisible();
-
-    await page.getByRole("link", { name: /Greetings and basic courtesies/i }).click();
 
     const token = page.locator("button.token").first();
     await expect(token).toBeVisible();

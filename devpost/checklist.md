@@ -5,6 +5,8 @@ status: approved
 
 # Build Checklist
 
+> **Archive notice (2026-11-19):** This checklist documents the original prototype build and is retained as evidence of prior work. Its completion marks do not represent the current Firebase hackathon release gates. Use `docs/hybrid-2026/SUBMISSION_CHECKLIST.md`.
+
 Build mode: fast (verification mandatory; learner checkpoints at the early-feedback and final-review moments; awaits learner confirmation per 5-build rule)
 
 ## Slices

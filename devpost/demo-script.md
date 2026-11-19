@@ -1,5 +1,7 @@
 # sofer demo — shot list
 
+> **Archive notice (2026-11-19):** This is the original pre-hackathon demo outline and is retained as project history. Its Token Factory flow is retired. Use `docs/hybrid-2026/DEMO_SCRIPT.md` for the current submission demo.
+
 Target length: **150–165 seconds** of actual recording (the form's cap is 3
 minutes; this leaves headroom for an intro card and a closing card).
 

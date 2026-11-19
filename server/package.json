@@ -10,7 +10,6 @@
     "check": "tsc --noEmit"
   },
   "dependencies": {
-    "better-auth": "^1.7.12",
     "drizzle-orm": "^0.45.4",
     "express": "^4.21.1",
     "postgres": "^3.4.9",

@@ -5,6 +5,8 @@ status: approved
 
 # sofer — Product Requirements
 
+> **Archive notice (2026-11-19):** This is the original pre-hackathon product brief and is retained as project history. Its scope and AI provider references are not authoritative for the current app. Use `docs/hybrid-2026/IMPLEMENTATION_PLAN.md` and `INDUSTRY_AND_READINESS_AUDIT.md` for current status.
+
 One line: a calm, accessible web app that teaches Modern Standard Arabic to complete beginners through short lessons, contextual word inspection, and an optional AI tutor.
 
 Source: `scope.md > [Project Name]`, `scope.md > The Core Loop`, `scope.md > What "Working" Looks Like`, `scope.md > The POC Boundary`.

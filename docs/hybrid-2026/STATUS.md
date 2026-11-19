@@ -1,6 +1,6 @@
 # Implementation status
 
-Updated: 2026-11-16
+Updated: 2026-11-19
 
 ## Complete in this checkpoint
 
@@ -34,10 +34,26 @@ Updated: 2026-11-16
 - Candidate Arabic content: reviewer unavailable, so only 3 original lessons / 7 sentences are trusted. The remaining 9 lessons / 41 sentences must receive qualified review before release as learning content.
 - Hackathon owner eligibility and submission remain owner-confirmed.
 
+## 2026-11-19 audit checkpoint
+
+- Added an official-rules cross-check, competitor/product scan, owner Firebase setup steps, and prioritized gap register in `INDUSTRY_AND_READINESS_AUDIT.md`.
+- Launched the guest-first app locally at `http://127.0.0.1:5173/`; local client and `/api/health` returned HTTP 200. Firebase AI stays unavailable because the ignored root `.env` currently has no Firebase Web configuration.
+- Removed the retired Token Factory tutor endpoint/provider, its isolated tests and smoke script, the unused Better Auth implementation/dependency, and obsolete Token Factory sample variables. Preserved the dictionary route, SQL schema/migration history, and ignored `.env`.
+- ECC Codex plugin `ecc@ecc` v2.2.3 is installed and enabled from the verified official marketplace. Repo-specific rules and limitations are recorded in `AGENTS.md` and `ECC_SETUP.md`; restart/reload Codex for the plugin skills to appear in a fresh session. No MCP credentials/hooks were enabled.
+- Added an optional `SOFER_E2E_PORT` to Playwright so tests can run on an isolated port while the local app remains open.
+- Current working tree contains these audit/cleanup edits; no commit or deployment was made.
+- Post-cleanup checks: lesson/alphabet validation, TypeScript, unit tests (67 pass / 2 optional DB skips), build, hygiene and 39 E2E tests passed. Root audit and server production-only audit report 0 findings; full server dev-tool audit still reports 4 moderate `@esbuild-kit`/Drizzle migration-tool findings. See `TEST_REPORT.md`.
+- Removed obsolete Token Factory settings from the ignored local `.env`; its remaining variable names were checked without printing values. The app was restarted and both local endpoints returned HTTP 200.
+- Firebase setup investigation: Firebase CLI 15.37.0 is available via Corepack/npm and is authenticated to the owner's Google account. The owner chose a new project; a valid unique project ID is still being confirmed. No `.firebaserc` target or Firebase Web variables are configured. Do not create a Firestore database until its edition/location are selected.
+- Frontend checkpoint: home is now a local-progress dashboard with a trusted Arabic sample, continue-learning action, and links to alphabet/practice; responsive navigation and layout updated. Production build and 320–1440px E2E viewports pass.
+- Full verification rerun on Node 26.12.1: lesson/alphabet validators, TypeScript, 67 unit tests (2 optional DB skips), production build, 39 Playwright E2E checks, and hygiene pass. The E2E selector was updated to follow the new home CTA directly into its next lesson. Build retains the existing >500 kB optional Firestore chunk warning.
+
 ## Next actions
 
-1. Owner supplies existing Firebase web config and local App Check setup, then record real cloud and device inference results.
-2. Run Firestore emulator rules tests and verify App Check enforcement in the project.
-3. Arrange Arabic review of candidate pack; promote only reviewed entries with provenance.
-4. Resolve or explicitly accept the four moderate server dev-tool audit findings; re-run all gates.
-5. Review production CSP/network behavior, deploy only after explicit authorization, and record the verified public URL.
+1. Confirm a unique project ID; create the Firebase project, register the Web app, provision AI Logic, and configure production App Check before building Hosting assets.
+2. Deploy Hosting after config/build validation; configure the existing Cloud Run API rewrite only with a deployable service and its required PostgreSQL connectivity.
+3. Run supported Chrome desktop local inference and cloud inference, record SDK `inferenceSource`, Arabic-language observations, and production App Check checks.
+4. Run Firestore Emulator rule tests; choose database edition/location before provisioning optional sync.
+5. Arrange Arabic review of candidate pack; promote only reviewed entries with provenance.
+6. Resolve or explicitly accept the four moderate server dev-tool audit findings; rerun all gates.
+7. Finish the timed English submission video with actual app footage and publish the verified video on YouTube; then record the final public URL.

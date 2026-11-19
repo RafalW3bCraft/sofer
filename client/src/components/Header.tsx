@@ -8,7 +8,7 @@ export default function Header() {
           <span className="wordmark__mark" aria-hidden="true">س</span>
           sofer
         </NavLink>
-        <nav className="site-nav" aria-label="Primary">
+        <nav className="site-nav" aria-label="Primary navigation">
           <NavLink to="/lessons">Learn</NavLink>
           <NavLink to="/alphabet">Alphabet</NavLink>
           <NavLink to="/progress">Progress</NavLink>
@@ -17,7 +17,7 @@ export default function Header() {
           <NavLink to="/settings">Settings</NavLink>
         </nav>
         <details className="site-menu">
-          <summary aria-label="Open menu">Menu</summary>
+          <summary aria-label="Open navigation menu">Menu <span aria-hidden="true">⌄</span></summary>
           <ul>
             <li><NavLink to="/lessons">Learn</NavLink></li>
             <li><NavLink to="/alphabet">Alphabet</NavLink></li>

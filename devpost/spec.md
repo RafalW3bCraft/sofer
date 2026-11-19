@@ -5,6 +5,8 @@ status: approved
 
 # sofer — Technical Spec
 
+> **Archive notice (2026-11-19):** This is the original pre-hackathon technical spec and is retained as project history. It describes the retired Token Factory architecture. Use `docs/hybrid-2026/ARCHITECTURE.md` and `FIREBASE_SETUP.md` for the current implementation.
+
 ## How This Works, In Plain Language
 
 sofer has two halves.
@@ -368,6 +370,5 @@ Open issues
 - **Alphabet content depth.** How many letter forms to include (isolated / initial / medial / final). Default in this spec: isolated only. Final decision can be deferred to alphabet page implementation in `5-build`.
 - **Transliteration scheme.** Default: simplified learner-friendly. Final decision can be deferred to lesson content authoring.
 - **Whether to commit a non-empty `.env.example`.** Yes — it will contain only variable names and example placeholders, never real credentials.
-
 
 

@@ -62,6 +62,8 @@ See [the current test report](docs/hybrid-2026/TEST_REPORT.md) for outcomes and 
 - [Evidence ledger](docs/hybrid-2026/EVIDENCE.md)
 - [Demo script draft](docs/hybrid-2026/DEMO_SCRIPT.md)
 - [Submission checklist](docs/hybrid-2026/SUBMISSION_CHECKLIST.md)
+- [Industry and hackathon readiness audit](docs/hybrid-2026/INDUSTRY_AND_READINESS_AUDIT.md)
+- [ECC setup](docs/hybrid-2026/ECC_SETUP.md)
 
 Firebase project setup, real cloud/on-device inference, Arabic review, production deployment, and public demo-video URL remain unverified or owner-dependent. No deployment or publication has been performed.
 
